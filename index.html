@@ -1,0 +1,140 @@
+<html>
+<head>
+    <title>authentication with Msal.js app</title>
+    <style>
+        .hidden {
+            visibility: hidden
+        }
+
+        .visible {
+            visibility: visible
+        }
+    </style>
+</head>
+<body>
+    <script src="public/msal.js" class="pre"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" class="pre"></script>
+
+    <h1>Accessing a Web API with msal.js through B2C</h1>
+    <div>
+        <div id="label">Sign-in with Microsoft</div>
+        <button id="auth" onclick="login();">Login</button>
+    </div>
+    <div id="callApi" class="hidden">
+        <button id="auth" onclick="callApi();">Send email</button>
+        <input id="retrievedText" type="text" />
+    </div>
+
+    <pre class="response"></pre>
+
+    <script class="pre">
+        var applicationConfig = {
+            tenantID: 'fabrikamb2c.onmicrosoft.com',
+            clientID: '25eef6e4-c905-4a07-8eb4-0d08d5df8b3f',
+            policyName: 'B2C_1_SUSI',
+            redirectUri: 'http://localhost:6420/',
+            interactionMode: "popUp",
+            webApi: "http://localhost:5000/api/claims",
+            scopes: ['25eef6e4-c905-4a07-8eb4-0d08d5df8b3f']
+        };
+    </script>
+
+    <script>
+        // Msal helpers
+        // ------------
+        // Initialize Msal libraries by setting the Client Id and a callback
+        // @config - variable containing basic configuration, such as Client Id, interaction mode, and Redirect Url
+        // @authCallback - callback function to be called after sign-in completes.
+        function createApplication(config, authCallback) {
+            var userAgentApplication = new Msal.UserAgentApplication(config.clientID, null, authCallback);
+            userAgentApplication.redirectUri = config.redirectUri;
+            userAgentApplication.interactionMode = config.interactionMode;
+
+            // On page load, check if the token is present in the location hash and handle it
+            var isCallback = userAgentApplication.isCallback(window.location.hash);
+            if (isCallback) {
+                userAgentApplication.handleAuthenticationResponse(window.location.hash);
+            }
+            return userAgentApplication;
+        }
+
+        var clientApplication;
+    </script>
+
+    <script>
+        var authority = "https://login.microsoftonline.com/" + applicationConfig.tenantID;
+        clientApplication = createApplication(applicationConfig);
+
+        function login() {
+            clientApplication.loginPopup(applicationConfig.scopes)
+                .then(function (idToken) {
+                    // Change button to Sign Out
+                    var authButton = document.getElementById('auth');
+                    authButton.innerHTML = 'logout';
+                    authButton.setAttribute('onclick', 'logout();');
+                    var label = document.getElementById('label');
+                    label.innerText = "Hello " + clientApplication.user.profile.name + "! Please press callApi to call the Api";
+
+                    // Show the email address part
+                    var callApiSpan = document.getElementById('callApi');
+                    callApiSpan.className = "visible";
+                    var emailAddress = document.getElementById('retrievedText');
+                    emailAddress.value = clientApplication.user.username;
+                });
+        }
+
+        function logout() {
+            // Removes all sessions, need to call AAD endpoint to do full logout
+            clientApplication.logout();
+        }
+
+        function callApi() {
+            clientApplication.acquireTokenSilent(applicationConfig.scopes)
+                .then(function (token, error) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: 'json',
+                        beforeSend: function (request) {
+                            request.setRequestHeader('Authorization', 'bearer ' + token);
+                        },
+                        url: applicationConfig.webApi,
+                        data: JSON.stringify({}),
+                        processData: false,
+                        success: function (msg) {
+                            log(msg);
+                        }
+                    });
+                });
+        }
+    </script>
+
+    <script>
+        function log(s) {
+            document.body.querySelector('.response').appendChild(document.createTextNode("\n\n" + JSON.stringify(s, true, 2)));
+        }
+
+        function getEmail() {
+            var email = {
+                Subject: 'Welcome to Microsoft Graph development with Msal and the Microsoft Graph sample',
+                Body: {
+                    ContentType: 'HTML',
+                    Content: getEmailContent()
+                },
+                ToRecipients: [
+                    {
+                        EmailAddress: {
+                            Address: clientApplication.user.username
+                        }
+                    }
+                ]
+            };
+            return email;
+        }
+        // Get the HTMl for the email to send.
+        function getEmailContent() {
+            return "<html><head> <meta http-equiv=\'Content-Type\' content=\'text/html; charset=us-ascii\'> <title></title> </head><body style=\'font-family:calibri\'> <p>Congratulations " + clientApplication.user.profile.name + ",</p> <p>This is a message from the Microsoft Graph Connect sample. You are well on your way to incorporating Microsoft Graph endpoints in your apps. </p> <h3>What&#8217;s next?</h3><ul><li>Check out <a href='https://graph.microsoft.io' target='_blank'>graph.microsoft.io</a> to start building Microsoft Graph apps today with all the latest tools, templates, and guidance to get started quickly.</li><li>Use the <a href='https://graph.microsoft.io/graph-explorer' target='_blank'>Graph explorer</a> to explore the rest of the APIs and start your testing.</li><li>Browse other <a href='https://github.com/microsoftgraph/' target='_blank'>samples on GitHub</a> to see more of the APIs in action.</li></ul> <h3>Give us feedback</h3> <ul><li>If you have any trouble running this sample, please <a href='https://github.com/microsoftgraph/angular-connect-rest-sample/issues' target='_blank'>log an issue</a>.</li><li>For general questions about the Microsoft Graph API, post to <a href='https://stackoverflow.com/questions/tagged/microsoftgraph?sort=newest' target='blank'>Stack Overflow</a>. Make sure that your questions or comments are tagged with [microsoftgraph].</li></ul><p>Thanks and happy coding!<br>Your Microsoft Graph samples development team</p> <div style=\'text-align:center; font-family:calibri\'> <table style=\'width:100%; font-family:calibri\'> <tbody> <tr> <td><a href=\'https://github.com/microsoftgraph/angular-connect-rest-sample\'>See on GitHub</a> </td> <td><a href=\'https://officespdev.uservoice.com/\'>Suggest on UserVoice</a> </td> <td><a href=\'https://twitter.com/share?text=I%20just%20started%20developing%20%23Angular%20apps%20using%20the%20%23MicrosoftGraph%20Connect%20sample!%20&url=https://github.com/microsoftgraph/angular-connect-rest-sample\'>Share on Twitter</a> </td> </tr> </tbody> </table> </div>  </body> </html>";
+        };
+    </script>
+</body>
+</html>
