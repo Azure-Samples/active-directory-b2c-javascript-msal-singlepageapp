@@ -30,11 +30,11 @@
         "use strict";
         var applicationConfig = {
             tenantID: 'fabrikamb2c.onmicrosoft.com',                    // Tenant in which the AAD-B2C directory was created "something.onmicrosoft.com""
-            clientID: '90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6',           // ClientID of the application as registered in the AAD-B2C tenant.
+            clientID: 'e760cab2-b9a1-4c0d-86fb-ff7084abd902',           // ClientID of the application as registered in the AAD-B2C tenant.
             policyName: 'B2C_1_SUSI',                                   // Name of a sign-in sign-up policy added to the AAD-B2C tenant
-            redirectUri: 'https://localhost:6420/',                     // Redirect URL for the application. Needs also to be added in the application's properties in B2C
+            redirectUri: 'http://localhost:6420/',                      // Redirect URL for the application. Needs also to be added in the application's properties in B2C
             webApi: 'https://fabrikamb2chello.azurewebsites.net/hello', // Web API to call
-            scopes: ['https://fabrikamb2c.onmicrosoft.com/demoapi/demo.read']   // Scope to request from the WebAPI
+            scopes: ['https://fabrikamb2c.onmicrosoft.com/demoapi/demo.read']   // Scope required to access the WebAPI
         }; 
 
         // authority in the form: "https://login.microsoftonline.com/tfp/<B2C-TenantId>/<B2C-policyName>",
@@ -44,7 +44,7 @@
 
     <script>
         "use strict";
-        var clientApplication = new Msal.UserAgentApplication(applicationConfig.clientID, null, authenticationCallback);
+        var clientApplication = new Msal.UserAgentApplication(applicationConfig.clientID, authority, authenticationCallback);
         clientApplication.redirectUri = applicationConfig.redirectUri;
 
         // On page load, check if the token is present in the location hash and handle it
