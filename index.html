@@ -26,16 +26,17 @@
 
     <pre class="response"></pre>
 
-    <script class="pre"> 
+    <script class="pre">
+
         "use strict";
         var applicationConfig = {
             tenantID: 'fabrikamb2c.onmicrosoft.com',                    // Tenant in which the AAD-B2C directory was created "something.onmicrosoft.com""
             clientID: 'e760cab2-b9a1-4c0d-86fb-ff7084abd902',           // ClientID of the application as registered in the AAD-B2C tenant.
-            policyName: 'B2C_1_SUSI',                                   // Name of a sign-in sign-up policy added to the AAD-B2C tenant
+            policyName: 'b2c_1_susi',                                   // Name of a sign-in sign-up policy added to the AAD-B2C tenant
             redirectUri: 'http://localhost:6420/',                      // Redirect URL for the application. Needs also to be added in the application's properties in B2C
             webApi: 'https://fabrikamb2chello.azurewebsites.net/hello', // Web API to call
             scopes: ['https://fabrikamb2c.onmicrosoft.com/demoapi/demo.read']   // Scope required to access the WebAPI
-        }; 
+        };
 
         // authority in the form: "https://login.microsoftonline.com/tfp/<B2C-TenantId>/<B2C-policyName>",
         var authority = "https://login.microsoftonline.com/tfp/" + applicationConfig.tenantID + "/" + applicationConfig.policyName;
@@ -47,19 +48,13 @@
         var clientApplication = new Msal.UserAgentApplication(applicationConfig.clientID, authority, authenticationCallback);
         clientApplication.redirectUri = applicationConfig.redirectUri;
 
-        // On page load, check if the token is present in the location hash and handle it
-        var isCallback = clientApplication.isCallback(window.location.hash);
-        if (isCallback) {
-            clientApplication.handleAuthenticationResponse(window.location.hash);
-        }
-
-        // The authentication callback is needed when we use loginRedirect - for instance IE
-        function authenticationCallback(errorDesc, idToken, error) {
-            if (idToken) {
-                onAuthentication(idToken);
+        // The authentication callback is needed when we use loginRedirect, acquireTokenRedirect
+        function authenticationCallback(errorDesc, token, error, tokenType) {
+            //This function is called after loginRedirect. msal object is bound to the window object after the constructor is called.
+            if (token) {
             }
             else {
-                log(errorDesc + ':' + error);
+                logMessage(error + ":" + errorDesc);
             }
         }
 
@@ -78,9 +73,25 @@
 
         function login() {
             clientApplication.loginPopup(applicationConfig.scopes)
-                .then(onAuthentication), function(message) {
-                    log(message);
-                };
+                .then(onAuthentication, logMessage);
+        }
+
+        function callWebApi(accessToken) {
+            logMessage("Calling the web API");
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: 'json',
+                beforeSend: function (request) {
+                    request.setRequestHeader('Authorization', 'bearer ' + accessToken);
+                },
+                url: applicationConfig.webApi,
+                data: JSON.stringify({}),
+                processData: false,
+                success: function (msg) {
+                    logMessage(msg);
+                }
+            });
         }
 
         function logout() {
@@ -88,27 +99,26 @@
             clientApplication.logout();
         }
 
+        /*
         function callApi() {
             clientApplication.acquireTokenSilent(applicationConfig.scopes)
-                .then(function (token, error) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json",
-                        dataType: 'json',
-                        beforeSend: function (request) {
-                            request.setRequestHeader('Authorization', 'bearer ' + token);
-                        },
-                        url: applicationConfig.webApi,
-                        data: JSON.stringify({}),
-                        processData: false,
-                        success: function (msg) {
-                            log(msg);
-                        }
-                    });
+                .then(callWebApi, function (error) {
+                    return clientApplication.acquireTokenPopup(applicationConfig.scopes)
+                })
+                .then(callWebApi, logMessage);
+        }*/
+
+        function callApi() {
+            clientApplication.acquireTokenSilent(applicationConfig.scopes)
+                .then(function (accessToken) {
+                    logMessage(accessToken)
+                }, function (error) {
+                    logMessage(accessToken)
                 });
         }
 
-        function log(s) {
+
+        function logMessage(s) {
             document.body.querySelector('.response').appendChild(document.createTextNode("\n\n" + JSON.stringify(s, true, 2)));
         }
     </script>
