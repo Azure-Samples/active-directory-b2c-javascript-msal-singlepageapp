@@ -12,13 +12,7 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 ## How To Run This Sample
 
-To run this sample you will need:
-- An Internet connection
-Optionnally:
-- An Azure AD B2C tenant
-
-If you don't have an Azure AD B2C tenant, you can follow [those instructions](https://azure.microsoft.com/documentation/articles/active-directory-b2c-get-started/) to create one. 
-If you just want to see the sample in action, you don't need to create your own tenant as the project comes with some settings associated to a test tenant and application; however it is highly recommend that you register your own app and experience going through the configuration steps below.   
+The sample is already configured to use a demo environment and can be run simply by downloading the code and running the app on your machine. Follow the instructions below if you would like to use your own Azure AD B2C configuration.
 
 ### Step 1:  Clone or download this repository
 
@@ -29,6 +23,8 @@ From your shell or command line:
 ### [OPTIONAL] Step 2: Create an Azure AD B2C application 
 
 You can run the sample as is with its current settings, or you can optionally register it as a new application under your own developer account. Creating your own app is highly recommended.
+
+If you don't have an Azure AD B2C tenant, you can follow [those instructions](https://azure.microsoft.com/documentation/articles/active-directory-b2c-get-started/) to create one.
 
 > *IMPORTANT*: if you choose to perform one of the optional steps, you have to perform ALL of them for the sample to work as expected.
 
@@ -73,11 +69,13 @@ Our sample calls the Web API produced by the following sample [https://github.co
 1. Make sure you've [installed Node](https://nodejs.org/en/download/).
 1. Install the node dependencies: 
         ```
-        npm install && npm update
+        cd active-directory-b2c-javascript-msal-singlepageapp
+        npm install
+        npm update
         ```
 1. Run the Web application
         ```
-        node index.js
+        node server.js
         ```
 1. With your favorite browser, navigate to `http://localhost:6420`.
 1. Click the **login** button at the top of the application screen. The sample works exactly in the same way regardless of the account type you choose, apart from some visual differences in the authentication and consent experience. Upon successful sign in, the application screen will show buttons that allow you to call an API and sign out.
