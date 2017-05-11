@@ -1,4 +1,4 @@
- This ---
+---
 services: active-directory-b2c
 platforms: JavaScript
 author: jmprieur
