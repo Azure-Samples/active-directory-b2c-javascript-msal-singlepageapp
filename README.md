@@ -1,4 +1,4 @@
----
+ This ---
 services: active-directory-b2c
 platforms: JavaScript
 author: jmprieur
@@ -8,7 +8,7 @@ author: jmprieur
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library Previw for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
-> *IMPORTANT*: as we release this sample, it currently works fine with the B2C local identities and the gmail identity provider, but not yet with the Microsoft Personal Identity provider (MSA) or the Twitter identity provider.
+> *IMPORTANT*: Currently, the AAD B2C service does not fully support the implicit flow. This sample works fine with the B2C local identities and the gmail identity provider, but not yet with the Microsoft Personal Identity provider (MSA) or the Twitter identity provider.
 
 ## How To Run This Sample
 
