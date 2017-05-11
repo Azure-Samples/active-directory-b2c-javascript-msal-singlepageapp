@@ -4,11 +4,11 @@ platforms: JavaScript
 author: jmprieur
 ---
 
-# JavaScript application signing in users with Azure Active Directory B2C and calling a Web API
+# Single-Page Application built on MSAL.js with Azure AD B2C
 
-This simple sample demonstrates how to use the [Microsoft Authentication Library Previw for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
+> **IMPORTANT NOTE: Silent renewing of access tokens is not supported by all social identity providers.**
 
-> *IMPORTANT*: Currently, the AAD B2C service does not fully support the implicit flow. This sample works fine with the B2C local identities and the gmail identity provider, but not yet with the Microsoft Personal Identity provider (MSA) or the Twitter identity provider.
+This simple sample demonstrates how to use the [Microsoft Authentication Library Preview for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
 ## How To Run This Sample
 
