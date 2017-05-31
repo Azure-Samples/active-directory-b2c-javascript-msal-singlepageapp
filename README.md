@@ -82,20 +82,16 @@ Now you can replace the app's default configuration with your own.
 ### Step 7: Run the sample
 
 1. Make sure you've [installed Node](https://nodejs.org/en/download/).
-1. Install the node dependencies: 
-        
-        ```powershell
-        cd active-directory-b2c-javascript-msal-singlepageapp
-        npm install
-        npm update
-        ```
-        
-1. Run the Web application
-        
-        ```powershell
-        node server.js
-        ```
-        
+1. Install the node dependencies:        
+    ```powershell
+    cd active-directory-b2c-javascript-msal-singlepageapp
+    npm install
+    npm update
+    ```       
+1. Run the Web application       
+    ```powershell
+    node server.js
+    ```      
 1. With your favorite browser, navigate to `http://localhost:6420`.
 1. Click the **login** button at the top of the application screen. The sample works exactly in the same way regardless of the account type you choose, apart from some visual differences in the authentication and consent experience. Upon successful sign in, the application screen will show buttons that allow you to call an API and sign out.
 1. Click on the **Call Web API** and see the textual representation of the JSon object which is returned
