@@ -62,7 +62,7 @@ Your single page application registration should include the following informati
 Now you can replace the app's default configuration with your own.  
 
 1. Open the `index.html` file.
-1. Find the assignment for `ClientID` and replace the value with the Application ID from Step 2.
+1. Find the assignment for `ClientID` and replace the value with the Application ID from Step 5.
 1. Find the assignment for `authority` and replacing `b2c_1_susi`by the name of the policy you created in Step 3, and `fabrikamb2c.onmicrosoft.com` by the name of the Azure AD B2C tenant.
 1. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, as provided in the B2C application registration portal
 1. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4.
