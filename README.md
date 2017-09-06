@@ -16,11 +16,11 @@ There are two ways to run this sample:
 1. **Using the demo environment** - The sample is already configured to use a demo environment and can be run simply by downloading this repository and running the app on your machine. See steps below for Running with demo environment.
 2. **Using your own Azure AD B2C tenant** - If you would like to use your own Azure AD B2C configuration, follow the steps listed below for Using your own Azure AD B2C tenant.
 
-### Using the demo environment
+## Using the demo environment
 
 This sample demostrates how to sign in or sign up for an account at "Wingtip Toys" - the demo environment for this sample. Once signed-in, clikcing on the **Call Web API** button shows the Display name you used when you created your account. 
 
-#### Step 1: Clone or download this repository
+### Step 1: Clone or download this repository
 
 From your shell or command line:
 
@@ -28,7 +28,7 @@ From your shell or command line:
 git clone https://github.com/Azure-Samples/active-directory-b2c-javascript-msal-singlepageapp.git
 ```
 
-#### Step 2: Run the application
+### Step 2: Run the application
 
 From your shell or command line: 
 
@@ -45,21 +45,28 @@ Listening on port 6420...
 
 You can visit `http://localhost:6420` and click the **Login** button to start the Azure AD B2C sign in or sign up workflow.  
 
-### [OPTIONAL] Step 2: Get your own Azure AD B2C tenant
+## Using the Azure AD B2C Tenant
+
+Now that you have a good idea what this sample application does, it's time to configure the sample to use your own Azure AD B2C tenant. 
+
+### Step 1: Get your own Azure AD B2C tenant
 
 You can also modify the sample to use your own Azure AD B2C tenant.  First, you'll need to create an Azure AD B2C tenant by following [these instructions](https://azure.microsoft.com/documentation/articles/active-directory-b2c-get-started).
 
-> *IMPORTANT*: if you choose to perform one of the optional steps, you have to perform ALL of them for the sample to work as expected.
-
-### [OPTIONAL] Step 3: Create your own policies
+### Step 2: Create your own policies
 
 This sample uses three types of policies: a unified sign-up/sign-in policy & a profile editing policy.  Create one policy of each type by following [the instructions here](https://azure.microsoft.com/documentation/articles/active-directory-b2c-reference-policies).  You may choose to include as many or as few identity providers as you wish.
 
-If you already have existing policies in your Azure AD B2C tenant, feel free to re-use those.  No need to create new ones just for this sample.
+If you already have existing policies in your Azure AD B2C tenant, feel free to re-use those policies.  
 
-### [OPTIONAL] Step 4: Create your own Web API
+### Step 3: Register your own Web API
 
-This sample calls an API at https://fabrikamb2chello.azurewebsites.net which has the same code as the sample [Node.js Web API with Azure AD B2C](https://github.com/Azure-Samples/active-directory-b2c-javascript-nodejs-webapi). You'll need your own API or at the very least, you'll need to [register a Web API with Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) so that you can define the scopes that your single page application will request access tokens for. 
+As you saw in the demo environment, this sample calls a Web API at https://fabrikamb2chello.azurewebsites.net which has the same code as the sample [Node.js Web API with Azure AD B2C](https://github.com/Azure-Samples/active-directory-b2c-javascript-nodejs-webapi). You'll need to replace the demo environment Web API with your own Web API.
+
+If you do not have your own Web API, you can use the 
+
+you'll need to [register a Web API with Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) so that you can define the scopes that your single page application will request access tokens for. 
+
 
 Your web API registration should include the following information:
 
