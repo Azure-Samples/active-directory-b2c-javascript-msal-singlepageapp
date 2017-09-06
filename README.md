@@ -6,21 +6,44 @@ author: jmprieur
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
 
-> **IMPORTANT NOTE: Silent renewing of access tokens is not supported by all social identity providers.**
+:warning: Silent renewing of access tokens is not supported by all social identity providers.
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library Preview for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
 ## How To Run This Sample
 
-The sample is already configured to use a demo environment and can be run simply by downloading the code and running the app on your machine. Follow the instructions below if you would like to use your own Azure AD B2C configuration.
+There are two ways to run this sample:
+1. **Using the demo environment** - The sample is already configured to use a demo environment and can be run simply by downloading this repository and running the app on your machine. See steps below for Running with demo environment.
+2. **Using your own Azure AD B2C tenant** - If you would like to use your own Azure AD B2C configuration, follow the steps listed below for Using your own Azure AD B2C tenant.
 
-### Step 1:  Clone or download this repository
+### Using the demo environment
+
+This sample demostrates how to sign in or sign up for an account at "Wingtip Toys" - the demo environment for this sample. Once signed-in, clikcing on the **Call Web API** button shows the Display name you used when you created your account. 
+
+#### Step 1: Clone or download this repository
 
 From your shell or command line:
 
 ```powershell
 git clone https://github.com/Azure-Samples/active-directory-b2c-javascript-msal-singlepageapp.git
 ```
+
+#### Step 2: Run the application
+
+From your shell or command line: 
+
+```
+cd active-directory-b2c-javascript-msal-singlepageapp
+node server.js
+```
+
+The console window shows the port number for the web application
+
+```
+Listening on port 6420...
+```
+
+You can visit `http://localhost:6420` and click the **Login** button to start the Azure AD B2C sign in or sign up workflow.  
 
 ### [OPTIONAL] Step 2: Get your own Azure AD B2C tenant
 
