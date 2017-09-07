@@ -18,7 +18,7 @@ There are two ways to run this sample:
 
 ## Using the demo environment
 
-This sample demostrates how to sign in or sign up for an account at "Wingtip Toys" - the demo environment for this sample. Once signed-in, clicking on the **Call Web API** button shows the Display name you used when you created your account. 
+This sample demonstrates how to sign in or sign up for an account at "Wingtip Toys" - the demo environment for this sample. Once signed-in, clicking on the **Call Web API** button shows the Display name you used when you created your account. 
 
 ### Step 1: Clone or download this repository
 
@@ -45,9 +45,9 @@ Listening on port 6420...
 
 You can visit `http://localhost:6420` and click the **Login** button to start the Azure AD B2C sign in or sign up workflow.  
 
-## Using the Azure AD B2C Tenant
+## Using your own Azure AD B2C Tenant
 
-Now that you have a good idea what this sample application does, it's time to configure the sample to use your own Azure AD B2C tenant. 
+In the previous section, you learned how to run the sample application using the demo environment. In this section, you'll learn how to configure this single page application sample and the related [Node.js Web API with Azure AD B2C sample](https://github.com/Azure-Samples/active-directory-b2c-javascript-nodejs-webapi) to work with your own Azure AD B2C Tenant. 
 
 ### Step 1: Get your own Azure AD B2C tenant
 
