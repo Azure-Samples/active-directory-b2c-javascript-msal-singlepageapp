@@ -10,7 +10,7 @@ author: jmprieur
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library Preview for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
-## How To Run This Sample
+## How to run this sample
 
 There are two ways to run this sample:
 1. **Using the demo environment** - The sample is already configured to use a demo environment and can be run simply by downloading this repository and running the app on your machine. See steps below for Running with demo environment.
@@ -34,6 +34,7 @@ From your shell or command line:
 
 ```
 cd active-directory-b2c-javascript-msal-singlepageapp
+npm install && npm update
 node server.js
 ```
 
