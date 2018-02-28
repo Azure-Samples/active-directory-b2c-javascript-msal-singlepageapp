@@ -93,7 +93,7 @@ Provide the following values for the Node.js Web API registration:
 - Create the application. 
 - Once the application is created, open your `My Test Node.js Web API` application and then open the **Published Scopes** window (in the left nav menu) and add the scope `demo.read` followed by a description `demoing a read scenario`. Click **Save**.
 
-Third, in the `index.html` file of the Node.js Web API sample, update the following variables to refer to your Web API registration.  
+Third, in the `index.js` file of the Node.js Web API sample, update the following variables to refer to your Web API registration.  
 
 ```
 var tenantID = "<your-tenant-name>.onmicrosoft.com";
