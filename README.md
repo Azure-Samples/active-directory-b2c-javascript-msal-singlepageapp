@@ -1,7 +1,7 @@
 ---
 services: active-directory-b2c
 platforms: javascript
-author: jmprieur
+author: jmprieur,nvalluri
 ---
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
@@ -100,6 +100,10 @@ var tenantID = "<your-tenant-name>.onmicrosoft.com";
 var clientID = "<Application ID for your Node.js Web API - found on Properties page in Azure portal>";
 var policyName = "<Name of your sign in / sign up policy, e.g. B2C_1_SiUpIn>";
 ```
+> [!NOTE]
+>developers using the [Azure China Environment](https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud), MUST use <your-tenant-name>.b2clogin.cn) authority, instead of `login.chinacloudapi.cn`.
+>
+> In order to use <your-tenant-name>.b2clogin.*, you will need to `setValidateAuthority(false)`. Learn more about using [b2clogin](https://docs.microsoft.com/en-us/azure/active-directory-b2c/b2clogin).
 
 Lastly, to run your Node.js Web API, run the following command from your shell or command line
 
@@ -133,7 +137,7 @@ Now in the sample code, you can replace the single page application's demo envir
 2. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: 'http://localhost:5000/hello'`
 
 Your resulting code should look as follows:
-
+  
 ```javascript
 <script class="pre">
   // The current application coordinates were pre-registered in a B2C tenant.
