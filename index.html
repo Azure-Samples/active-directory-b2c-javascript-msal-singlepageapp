@@ -22,8 +22,9 @@
 
 <body>
   <!-- bluebird only needed if this page needs to run on Internet Explorer -->
+  <!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js" class="pre"></script>
-  <script src="msal.js"></script>
+  <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/msal.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" class="pre"></script>
 
   <h2>Getting an access token with Azure AD B2C and calling a Web API</h2>
@@ -36,37 +37,43 @@
   <pre class="response"></pre>
 
   <script class="pre">
+
     // The current application coordinates were pre-registered in a B2C tenant.
-    var applicationConfig = {
-      clientID: 'e760cab2-b9a1-4c0d-86fb-ff7084abd902',
-      authority: "https://login.microsoftonline.com/tfp/fabrikamb2c.onmicrosoft.com/b2c_1_susi",
+    var appConfig = {
       b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
-      webApi: 'https://fabrikamb2chello.azurewebsites.net/hello',
+      webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
     };
   </script>
 
   <script>
     "use strict";
 
-    var config = {
-      auth: {
-        clientId: applicationConfig.clientID,
-        authority: applicationConfig.authority,
-      }
+    // configuration to initialize msal
+    var msalConfig = {
+        auth: {
+            clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902", //This is your client ID
+            authority: "https://login.microsoftonline.com/tfp/fabrikamb2c.onmicrosoft.com/b2c_1_susi" //This is your tenant info
+        },
+        cache: {
+            cacheLocation: "localStorage",
+            storeAuthStateInCookie: true
+        }
     };
 
     var clientApplication = new Msal.UserAgentApplication(config);
+
+    // Register a call back for redirect flow
     // myMSALObj.handleRedirectCallback(authRedirectCallback);
 
     function login() {
 
       var loginRequest = {
-        scopes: applicationConfig.b2cScopes
+        scopes: appConfig.b2cScopes
       };
 
       clientApplication.loginPopup(loginRequest).then(function (loginResponse) {
         var tokenRequest = {
-          scopes: applicationConfig.b2cScopes
+          scopes: appConfig.b2cScopes
         };
 
         clientApplication.acquireTokenSilent(tokenRequest).then(function (tokenResponse) {
@@ -98,7 +105,7 @@
 
     function callApi() {
       var tokenRequest = {
-        scopes: applicationConfig.b2cScopes
+        scopes: appConfig.b2cScopes
       }
       clientApplication.acquireTokenSilent(tokenRequest).then(function (tokenResponse) {
         callApiWithAccessToken(tokenResponse.accessToken);
@@ -115,7 +122,7 @@
       // Call the Web API with the AccessToken
       $.ajax({
         type: "GET",
-        url: applicationConfig.webApi,
+        url: appConfig.webApi,
         headers: {
           'Authorization': 'Bearer ' + accessToken,
         },
