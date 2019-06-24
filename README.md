@@ -6,7 +6,7 @@ author: jmprieur,nvalluri
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
 
-:warning: Silent renewing of access tokens is not supported by all social identity providers.
+> **Warning**: Silent renewing of access tokens is not supported by all social identity providers.
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library Preview for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
