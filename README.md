@@ -1,7 +1,11 @@
 ---
-services: active-directory-b2c
-platforms: javascript
-author: jmprieur,nvalluri
+page_type: sample
+description: How to use the Microsoft Authentication Library Preview for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C.
+languages:
+  - nodejs
+  - javascript
+products:
+  - azure-active-directory
 ---
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
