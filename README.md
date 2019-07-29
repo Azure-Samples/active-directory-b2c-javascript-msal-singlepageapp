@@ -166,7 +166,7 @@ Your resulting code should look as follows:
 5. Click on the **Call Web API** and see the textual representation of the JSON object that is returned. Make sure your Node.js Web API sample is still running on port 5000. 
 6. Sign out by clicking the **Logout** button.  
 
-## Advance topics
+## Optional
 - [Configure application to use b2clogin.com](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-b2c-overview#configure-application-to-use-b2clogincom)
 - The MSAL.js library allows you to pass [login_hint parameter](https://docs.microsoft.com/en-us/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://docs.microsoft.com/en-us/javascript/api/msal/authenticationparameters?view=azure-node-latest), using `loginHint` attribute. 
     ```JavaScript
