@@ -1,18 +1,19 @@
 ---
 page_type: sample
-description: How to use the Microsoft Authentication Library Preview for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C.
+description: "How to use the Microsoft Authentication Library for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C."
 languages:
   - nodejs
   - javascript
 products:
   - azure-active-directory
+  - azure
 ---
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
 
 > **Warning**: Silent renewing of access tokens is not supported by all social identity providers.
 
-This simple sample demonstrates how to use the [Microsoft Authentication Library Preview for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
+This simple sample demonstrates how to use the [Microsoft Authentication Library for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
 ## How to run this sample
 
