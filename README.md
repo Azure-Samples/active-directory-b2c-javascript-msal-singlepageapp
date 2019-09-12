@@ -171,8 +171,29 @@ Your resulting code should look as follows:
 5. Click on the **Call Web API** and see the textual representation of the JSON object that is returned. Make sure your Node.js Web API sample is still running on port 5000. 
 6. Sign out by clicking the **Logout** button.  
 
+## Optional
+- [Configure application to use b2clogin.com](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-b2c-overview#configure-application-to-use-b2clogincom)
+- The MSAL.js library allows you to pass [login_hint parameter](https://docs.microsoft.com/en-us/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://docs.microsoft.com/en-us/javascript/api/msal/authenticationparameters?view=azure-node-latest), using `loginHint` attribute. 
+    ```JavaScript
+      var loginRequest = {
+        scopes: appConfig.b2cScopes,
+        loginHint: "someone@contoso.com"
+      };
+    ```
+- You can pass any custom query string parameter in the [AuthenticationParameters object](https://docs.microsoft.com/en-us/javascript/api/msal/authenticationparameters?view=azure-node-latest), using `extraQueryParameters` attribute. Following sample sets the campaignId that can be used in the [Azure AD B2C UI](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-ui-customization-custom-dynamic), and the [ui_locales](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-language-customization) set to es (Spanish).
+    ```JavaScript
+      var loginRequest = {
+        scopes: appConfig.b2cScopes,
+        extraQueryParameters: { campaignId: 'hawaii', ui_locales: 'es' }
+      };
+    ```
+
+
 ## More information
-For more information on Azure B2C, see [the Azure AD B2C documentation homepage](http://aka.ms/aadb2c). 
+For more information on Azure B2C, see:
+- [Azure AD B2C documentation homepage](http://aka.ms/aadb2c) 
+- [Microsoft authentication library for js Wiki](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki)
+- [Integrate Microsoft Authentication Library (MSAL) with Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-b2c-overview)
 
 ## Community Help and Support
 We use Stack Overflow with the [msal](https://stackoverflow.com/questions/tagged/msal) and [azure-ad-b2c](https://stackoverflow.com/questions/tagged/azure-ad-b2c) tags to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.js].
