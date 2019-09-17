@@ -138,21 +138,35 @@ Now in the sample code, you can replace the single page application's demo envir
 1. Open the `index.html` file.
 1. Find the assignment for `ClientID` and replace the value with the Application ID for the single page application you registered in Step 4, for example the Application ID found in `My Test SPA` application in the Azure portal. 
 1. Find the assignment for `authority` and replacing `b2c_1_susi` with the name of the policy you created in Step 2, and `fabrikamb2c.onmicrosoft.com` by the name of your Azure AD B2C tenant, for example `https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>`
-1. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/hello/demo.read"]`
-2. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: 'http://localhost:5000/hello'`
+1. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/helloapi/demo.read"]`
+2. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
 
 Your resulting code should look as follows:
   
 ```javascript
 <script class="pre">
-  // The current application coordinates were pre-registered in a B2C tenant.
-  var applicationConfig = {
-    clientID: '<Application ID for your single page application>',
-    authority: "https://login.microsoftonline.com/tfp/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>",
-    b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/hello/demo.read"],
-    webApi: 'http://localhost:5000/hello',
-  };
-</script>
+ 
+// The current application coordinates were pre-registered in a B2C tenant.
+var appConfig = {
+      b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
+      webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
+    };
+ </script>
+
+const msalConfig = {
+       auth: {
+            clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902", //This is your client ID
+            authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_susi", //This is your tenant info
+            validateAuthority: false
+        },
+       cache: {
+            cacheLocation: "localStorage",
+            storeAuthStateInCookie: true
+        }
+    };
+
+// instantiate MSAL
+const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 ```
 
 ### Step 7: Run the sample
