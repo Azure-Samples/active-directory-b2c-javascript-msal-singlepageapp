@@ -89,7 +89,7 @@
         return myMSALObj.acquireTokenSilent(tokenRequest).catch(function(error) {
           console.log("aquire token popup");
           // fallback to interaction when silent call fails
-          return myMSALObj.acquireTokenPopup(tokenrequest).then(function (tokenResponse) {
+          return myMSALObj.acquireTokenPopup(tokenRequest).then(function (tokenResponse) {
           }).catch(function(error){
             logMessage("Failed token acquisition", error);
         });
