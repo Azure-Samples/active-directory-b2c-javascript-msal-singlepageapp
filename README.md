@@ -106,7 +106,7 @@ var clientID = "<Application ID for your Node.js Web API - found on Properties p
 var policyName = "<Name of your sign in / sign up policy, e.g. B2C_1_SiUpIn>";
 ```
 > [!NOTE]
->developers using the [Azure China Environment](https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud), MUST use <your-tenant-name>.b2clogin.cn) authority, instead of `login.chinacloudapi.cn`.
+>developers using the [Azure China Environment](https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud), MUST use <your-tenant-name>.b2clogin.cn authority, instead of `login.chinacloudapi.cn`.
 >
 > In order to use <your-tenant-name>.b2clogin.*, you will need to configure you application and set `validateAuthority: false`. Learn more about using [b2clogin](https://docs.microsoft.com/en-us/azure/active-directory-b2c/b2clogin#set-the-validateauthority-property).
 
