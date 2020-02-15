@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAD B2C | MSAL.JS Vanilla JavaScript SPA</title>
+
+  <!-- bluebird only needed if this page needs to run on Internet Explorer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js" class="pre"></script>
+  <!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
+  <script type="text/javascript" src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js" integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP" crossorigin="anonymous"></script>
+
+  <!-- adding Bootstrap 4 for UI components  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Azure AD B2C</a>
+        <button type="button" id="authButton" class="btn btn-secondary ml-auto" onclick="signIn()">
+          Sign In
+        </button> 
+  </nav>
+  <div class="card">
+    <h5 class="card-header text-center">Getting an access token with Azure AD B2C and calling a Web API</h5>
+    <div class="card-body text-center">
+      <h5 id="label" class="card-title">Sign-in with Microsoft Azure AD B2C</h5>
+      <pre id="response" class="card-text"></pre>
+      <button type="button" id="callApiButton" class="btn btn-primary" style="display:none" onclick="callApi()">Call API</button>
+    </div>
+  </div>
+
+  <!-- importing bootstrap.js and supporting js libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- importing app scripts -->
+  <script type="text/javascript" src="./authConfig.js"></script>
+  <script type="text/javascript" src="./apiConfig.js"></script>
+  <script type="text/javascript" src="./ui.js"></script>
+  <script type="text/javascript" src="./auth.js"></script>
+  <script type="text/javascript" src="./api.js"></script>
+</body>
+</html>

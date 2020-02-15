@@ -1,8 +1,7 @@
 ---
 page_type: sample
-description: "How to use the Microsoft Authentication Library for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C."
+description: "This sample demonstrates how to use the Microsoft Authentication Library for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C."
 languages:
-  - nodejs
   - javascript
 products:
   - azure-active-directory
@@ -105,8 +104,9 @@ var tenantID = "<your-tenant-name>.onmicrosoft.com";
 var clientID = "<Application ID for your Node.js Web API - found on Properties page in Azure portal>";
 var policyName = "<Name of your sign in / sign up policy, e.g. B2C_1_SiUpIn>";
 ```
-> [!NOTE]
->developers using the [Azure China Environment](https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud), MUST use <your-tenant-name>.b2clogin.cn authority, instead of `login.chinacloudapi.cn`.
+> **NOTE**
+> 
+>Developers using the [Azure China Environment](https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud), MUST use <your-tenant-name>.b2clogin.cn authority, instead of `login.chinacloudapi.cn`.
 >
 > In order to use <your-tenant-name>.b2clogin.*, you will need to configure you application and set `validateAuthority: false`. Learn more about using [b2clogin](https://docs.microsoft.com/en-us/azure/active-directory-b2c/b2clogin#set-the-validateauthority-property).
 
@@ -144,14 +144,13 @@ Now in the sample code, you can replace the single page application's demo envir
 Your resulting code should look as follows:
   
 ```javascript
-<script class="pre">
- 
 // The current application coordinates were pre-registered in a B2C tenant.
-var appConfig = {
+
+const apiConfig = {
       b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
       webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
     };
- </script>
+
 
 const msalConfig = {
        auth: {
@@ -190,14 +189,14 @@ const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 - The MSAL.js library allows you to pass [login_hint parameter](https://docs.microsoft.com/en-us/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://docs.microsoft.com/en-us/javascript/api/msal/authenticationparameters?view=azure-node-latest), using `loginHint` attribute. 
     ```JavaScript
       var loginRequest = {
-        scopes: appConfig.b2cScopes,
+        scopes: apiConfig.b2cScopes,
         loginHint: "someone@contoso.com"
       };
     ```
 - You can pass any custom query string parameter in the [AuthenticationParameters object](https://docs.microsoft.com/en-us/javascript/api/msal/authenticationparameters?view=azure-node-latest), using `extraQueryParameters` attribute. Following sample sets the campaignId that can be used in the [Azure AD B2C UI](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-ui-customization-custom-dynamic), and the [ui_locales](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-language-customization) set to es (Spanish).
     ```JavaScript
       var loginRequest = {
-        scopes: appConfig.b2cScopes,
+        scopes: apiConfig.b2cScopes,
         extraQueryParameters: { campaignId: 'hawaii', ui_locales: 'es' }
       };
     ```
