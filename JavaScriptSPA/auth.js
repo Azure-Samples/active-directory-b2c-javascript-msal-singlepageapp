@@ -9,7 +9,6 @@ const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 function signIn() {
     myMSALObj.loginPopup(loginRequest)
         .then(loginResponse => {
-            console.log(loginResponse)
             getToken(tokenRequest)
                 .then(updateUI);
     }).catch(error => {

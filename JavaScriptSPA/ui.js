@@ -22,5 +22,5 @@ function updateUI() {
 // debug helper
 function logMessage(s) {
     document.getElementById("response")
-        .appendChild(document.createTextNode('\n' + s));
+        .appendChild(document.createTextNode('\n\n' + s));
 }

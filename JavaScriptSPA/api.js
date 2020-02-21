@@ -10,12 +10,13 @@ function callApiWithAccessToken(endpoint, accessToken) {
         headers: headers
       };
   
-    console.log('request made to Graph API at: ' + new Date().toString());
+    console.log('request made to Web API at: ' + new Date().toString());
     
     fetch(endpoint, options)
       .then(response => response.json())
       .then(response => {
-        logMessage("Web APi returned:\n" + JSON.stringify(response));
+        console.log('web API responded at: ' + new Date().toString());
+        logMessage("web API returned:\n" + JSON.stringify(response));
       }).catch(error => {
         logMessage("Error calling the Web api:\n" + error);
       });
