@@ -4,10 +4,11 @@ function updateUI() {
     logMessage("User '" + userName + "' logged-in");
 
     // add the logout button
-    const authButton = document.getElementById('authButton');
-    authButton.innerHTML = 'logout';
-    authButton.setAttribute('onclick', 'logout();');
-    authButton.setAttribute('class', "btn btn-success ml-auto")
+    const signInButton = document.getElementById('SignIn');
+    signInButton.nextElementSibling.style.display = 'none';
+    signInButton.innerHTML = 'logout';
+    signInButton.setAttribute('onclick', 'logout();');
+    signInButton.setAttribute('class', "btn btn-success ml-auto")
 
     // greet the user - specifying login
     const label = document.getElementById('label');

@@ -24,7 +24,7 @@ function callApiWithAccessToken(endpoint, accessToken) {
 
 // calls the resource API with the token
 function callApi() {
-  getToken(tokenRequest)
+  getTokenPopup(tokenRequest)
       .then(tokenResponse => {
           try {
             callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);

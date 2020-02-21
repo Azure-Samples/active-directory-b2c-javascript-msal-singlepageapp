@@ -1,34 +1,66 @@
 
 "use strict";
 
-// instantiate MSAL
+// Browser check variables
+// If you support IE, our recommendation is that you sign-in using Redirect APIs
+// If you as a developer are testing using Edge InPrivate mode, please add "isEdge" to the if check
+const ua = window.navigator.userAgent;
+const msie = ua.indexOf("MSIE ");
+const msie11 = ua.indexOf("Trident/");
+const msedge = ua.indexOf("Edge/");
+const isIE = msie > 0 || msie11 > 0;
+const isEdge = msedge > 0;
+
+let signInType;
+
+// Create the main myMSALObj instance
+// configuration parameters are located at authConfig.js
 const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 
-// sign-in and acquire a token silently with popup flow. 
-// Fall back in case of failure with silent acquisition to popup.
-function signIn() {
-    myMSALObj.loginPopup(loginRequest)
-        .then(loginResponse => {
-            getToken(tokenRequest)
-                .then(updateUI);
-    }).catch(error => {
-        logMessage(error);
-    });
-}
+// Register Callbacks for Redirect flow
+myMSALObj.handleRedirectCallback(authRedirectCallBack);
 
-//acquire a token silently
-function getToken(tokenRequest) {
-    return myMSALObj.acquireTokenSilent(tokenRequest)
-        .catch(error => {
-            console.log("Silent token acquisition fails. acquiring token using popup");
-            
-            // fallback to interaction when silent call fails
-            return myMSALObj.acquireTokenPopup(tokenRequest)
-                .then(tokenResponse => {
-                }).catch(error => {
-                    logMessage("Failed token acquisition", error);
-                });
-        });
+function authRedirectCallBack(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      if (response.tokenType === "id_token" && myMSALObj.getAccount() && !myMSALObj.isCallback(window.location.hash)) {
+        console.log('id_token acquired at: ' + new Date().toString());
+        updateUI();
+        getTokenRedirect(loginRequest);
+      } else if (response.tokenType === "access_token") {
+        console.log('access_token acquired at: ' + new Date().toString());
+      } else {
+        console.log("token type is:" + response.tokenType);
+      }
+    }
+  }
+
+// Redirect: once login is successful and redirects with tokens, call Graph API
+if (myMSALObj.getAccount() && !myMSALObj.isCallback(window.location.hash)) {
+    // avoid duplicate code execution on page load in case of iframe and Popup window.
+    updateUI();
+  }
+
+
+function signIn(method) {
+  
+  signInType = isIE ? "Redirect" : method;
+
+  if (signInType === "Popup") {
+    myMSALObj.loginPopup(loginRequest)
+      .then(loginResponse => {  
+        console.log('id_token acquired at: ' + new Date().toString());
+        if (myMSALObj.getAccount()) {
+          updateUI();
+        }
+    }).catch(function (error) {
+      console.log(error);
+    });
+
+  } else if (signInType === "Redirect") {
+    myMSALObj.loginRedirect(loginRequest)
+  }
 }
 
 // sign-out the user
@@ -36,3 +68,27 @@ function logout() {
     // Removes all sessions, need to call AAD endpoint to do full logout
     myMSALObj.logout();
 }
+
+function getTokenPopup(request) {
+    return myMSALObj.acquireTokenSilent(request)
+        .catch(error => {
+          console.log("silent token acquisition fails. acquiring token using popup");
+            // fallback to interaction when silent call fails
+            return myMSALObj.acquireTokenPopup(request)
+                .then(tokenResponse => {
+                }).catch(error => {
+                    console.log(error);
+                });
+        });
+  }
+  
+  // This function can be removed if you do not need to support IE
+  function getTokenRedirect(request) {
+    return myMSALObj.acquireTokenSilent(request)
+        .then((response) => {
+        }).catch(error => {
+            console.log("silent token acquisition fails. acquiring token using redirect");
+            // fallback to interaction when silent call fails
+            return myMSALObj.acquireTokenRedirect(request)
+        });
+  }
