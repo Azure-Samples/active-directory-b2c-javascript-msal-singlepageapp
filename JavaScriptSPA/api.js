@@ -10,13 +10,11 @@ function callApiWithAccessToken(endpoint, accessToken) {
         headers: headers
       };
   
-    console.log('request made to Web API at: ' + new Date().toString());
     
     fetch(endpoint, options)
       .then(response => response.json())
       .then(response => {
-        console.log('web API responded at: ' + new Date().toString());
-        logMessage("web API returned:\n" + JSON.stringify(response));
+        logMessage("Web API returned:\n" + JSON.stringify(response));
       }).catch(error => {
         logMessage("Error calling the Web api:\n" + error);
       });
@@ -26,7 +24,9 @@ function callApiWithAccessToken(endpoint, accessToken) {
 function callApi() {
   getTokenPopup(tokenRequest)
       .then(tokenResponse => {
+        console.log(tokenResponse)
           try {
+            logMessage("\nRequest made to Web API:\n")
             callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);
           } catch(err) {
             console.log(err);

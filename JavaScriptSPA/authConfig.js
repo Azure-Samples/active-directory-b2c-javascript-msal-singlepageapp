@@ -9,3 +9,8 @@ const msalConfig = {
         storeAuthStateInCookie: true
     }
 };
+
+// request to sign-in (returns an idToken)
+const loginRequest = {
+    scopes: ["openid", "profile"],
+};

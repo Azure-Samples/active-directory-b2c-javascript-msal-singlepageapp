@@ -4,11 +4,6 @@ const apiConfig = {
     webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
   };
 
-// request to sign-in (returns an idToken)
-const loginRequest = {
-    scopes: apiConfig.b2cScopes
-};
-
 // request to acquire a token for resource access
 const tokenRequest = {
     scopes: apiConfig.b2cScopes
