@@ -1,6 +1,9 @@
 // UI elements to work with
-const signInButton = document.getElementById('SignIn');
+const signInButton = document.getElementById('signIn');
 signInButton.addEventListener('click', signIn);
+
+const signOutButton = document.getElementById('signOut');
+signOutButton.addEventListener('click', logout);
 
 const callWebApiButton = document.getElementById('callApiButton');
 
@@ -11,12 +14,9 @@ const response = document.getElementById("response");
 function updateUI() {
         const userName = myMSALObj.getAccount().name;
         logMessage("User '" + userName + "' logged-in");
-    
-        // add the logout button
-        signInButton.innerHTML = 'logout';
-        signInButton.setAttribute('class', "btn btn-success ml-auto")
-        signInButton.removeEventListener('click', signIn);
-        signInButton.addEventListener('click', logout);
+
+        signInButton.style.display = 'none';
+        signOutButton.style.display = 'initial';
     
         // greet the user - specifying login
         label.innerText = "Hello " + userName;
