@@ -23,13 +23,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Azure AD B2C</a>
     <div class="btn-group ml-auto dropleft">
-        <button type="button" id="SignIn" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sign In
-        </button>
-        <div class="dropdown-menu">
-          <button class="dropdown-item" id="Popup" onclick="signIn(this.id)">Sign in using Popup</button>
-          <button class="dropdown-item" id="Redirect" onclick="signIn(this.id)">Sign in using Redirect</button>
-        </div>
+        <button type="button" id="SignIn" class="btn btn-secondary">Sign In</button>
     </div>
   </nav>
   <div class="card">
@@ -37,7 +31,7 @@
     <div class="card-body text-center">
       <h5 id="label" class="card-title">Sign-in with Microsoft Azure AD B2C</h5>
       <pre id="response" class="card-text"></pre>
-      <button type="button" id="callApiButton" class="btn btn-primary" style="display:none" onclick="callApi()">Call API</button>
+      <button type="button" id="callApiButton" class="btn btn-primary" style="display:none">Call API</button>
     </div>
   </div>
 
@@ -47,10 +41,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <!-- importing app scripts -->
+  <script type="text/javascript" src="./poliConfig.js"></script>
   <script type="text/javascript" src="./authConfig.js"></script>
   <script type="text/javascript" src="./apiConfig.js"></script>
+  <script type="text/javascript" src="./authPopup.js"></script>
   <script type="text/javascript" src="./ui.js"></script>
-  <script type="text/javascript" src="./auth.js"></script>
   <script type="text/javascript" src="./api.js"></script>
 </body>
 </html>

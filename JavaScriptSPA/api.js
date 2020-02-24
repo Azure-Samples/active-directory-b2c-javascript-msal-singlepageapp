@@ -1,7 +1,7 @@
 // helper function to access the resource with the token
-function callApiWithAccessToken(endpoint, accessToken) {
+function callApiWithAccessToken(endpoint, token) {
     const headers = new Headers();
-    const bearer = `Bearer ${accessToken}`;
+    const bearer = `Bearer ${token}`;
   
     headers.append("Authorization", bearer);
   
@@ -33,3 +33,13 @@ function callApi() {
           }
       });
 }
+
+// calls the resource API with the token
+// use this instead if you're doing redirect flow
+// function callApi() {
+//   if (accessToken === null || accessToken === undefined) {
+//     getTokenRedirect(tokenRequest);
+//   } else {
+//     callApiWithAccessToken(apiConfig.webApi, accessToken)
+//   }
+// }

@@ -42,7 +42,7 @@ From your shell or command line:
 ```bash
 cd active-directory-b2c-javascript-msal-singlepageapp
 npm install && npm update
-node server.js
+npm start
 ```
 
 The console window shows the port number for the web application
@@ -139,12 +139,14 @@ Provide the following values for the Single Page Application registration:
 
 Now in the sample code, you can replace the single-page application's demo environment configuration with your own tenant.  
 
-1. Open the `authConfig.js` file.
-2. Find the assignment for `clientID` and replace the value with the Application ID for the single page application you registered in Step 4, for example the Application ID found in `My Test SPA` application in the Azure portal.
-3. Find the assignment for `authority` and replacing `b2c_1_susi` with the name of the policy you created in Step 2, and `fabrikamb2c.onmicrosoft.com` by the name of your Azure AD B2C tenant, for example `https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>`
-4. Open the `apiConfig.js` file.
-5. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/helloapi/demo.read"]`
-6. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: "https://fabrikamb2chello.azurewebsites.net/hello`
+1. Open the `poliConfig.js` file.
+2. In the `b2cPolicies` object, replace the current signUp-signIn policy value with the name of the policy you created in Step 2 (if you have additional policies, you can add them here as well).
+3. Open the `authConfig.js` file.
+4. Find the assignment for `clientID` and replace the value with the Application ID for the single page application you registered in Step 4, for example the Application ID found in `My Test SPA` application in the Azure portal.
+5. Find the assignment for `authority` and replace `fabrikamb2c.onmicrosoft.com` by the name of your Azure AD B2C tenant, for example `https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>`
+6. Open the `apiConfig.js` file.
+7. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/helloapi/demo.read"]`
+8. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: "https://fabrikamb2chello.azurewebsites.net/hello`
 
 Your resulting code should look as follows:
   
@@ -167,8 +169,8 @@ const tokenRequest = {
 ```javascript
 const msalConfig = {
     auth: {
-        clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902", //This is your client ID
-        authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_susi", //This is your tenant info
+        clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902",
+        authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/" + b2cPolicies.signUpSignIn,
         validateAuthority: false
     },
     cache: {
@@ -176,6 +178,12 @@ const msalConfig = {
         storeAuthStateInCookie: true
     }
 };
+```
+
+```javascript
+const b2cPolicies = {
+    signUpSignIn: "b2c_1_susi",
+}
 ```
 
 ### Step 7: Run the sample
