@@ -154,7 +154,7 @@ Your resulting code should look as follows:
 const apiConfig = {
     b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
     webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
-  };
+};
 
 const loginRequest = {
     scopes: apiConfig.b2cScopes
@@ -198,7 +198,7 @@ const b2cPolicies = {
 2. Run the Web application:
 
     ```bash
-    node server.js
+    npm start
     ```
 
 3. Go to `http://localhost:6420`.
