@@ -34,12 +34,14 @@ function callApi() {
       });
 }
 
-// calls the resource API with the token
-// use this instead if you're doing redirect flow
-// function callApi() {
-//   if (accessToken === null || accessToken === undefined) {
-//     getTokenRedirect(tokenRequest);
-//   } else {
-//     callApiWithAccessToken(apiConfig.webApi, accessToken)
-//   }
-// }
+
+/** USE THIS INSTEAD IF YOU'RE FOLLOWING THE REDIRECT FLOW
+calls the resource API with the token
+function callApi() {
+  if (accessToken === null || accessToken === undefined) {
+    getTokenRedirect(tokenRequest);
+  } else {
+    callApiWithAccessToken(apiConfig.webApi, accessToken)
+  }
+} 
+*/
