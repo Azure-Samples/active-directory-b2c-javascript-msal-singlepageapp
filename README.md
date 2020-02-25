@@ -1,6 +1,6 @@
 ---
 page_type: sample
-description: "This sample demonstrates how to use the Microsoft Authentication Library for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C."
+description: "This sample demonstrates how to use the Microsoft Authentication Library for JavaScript to get an access token and call an API secured by Azure AD B2C."
 languages:
   - javascript
 products:
@@ -139,7 +139,7 @@ Provide the following values for the Single Page Application registration:
 
 Now in the sample code, you can replace the single-page application's demo environment configuration with your own tenant.  
 
-1. Open the `poliConfig.js` file.
+1. Open the `policies.js` file.
 2. In the `b2cPolicies` object, replace the current signUp-signIn policy value with the name of the policy you created in Step 2 (if you have additional policies, you can add them here as well).
 3. Open the `authConfig.js` file.
 4. Find the assignment for `clientID` and replace the value with the Application ID for the single page application you registered in Step 4, for example the Application ID found in `My Test SPA` application in the Azure portal.
