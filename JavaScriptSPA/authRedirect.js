@@ -1,10 +1,8 @@
-
-"use strict";
-
 // Create the main myMSALObj instance
 // configuration parameters are located at authConfig.js
 const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 
+let accessToken;
 // Register Callbacks for Redirect flow
 myMSALObj.handleRedirectCallback(authRedirectCallBack);
 
@@ -12,24 +10,25 @@ function authRedirectCallBack(error, response) {
     if (error) {
         console.log(error);
     } else {
-        if (response.tokenType === "id_token" && myMSALObj.getAccount() && !myMSALObj.isCallback(window.location.hash)) {
-        console.log('id_token acquired at: ' + new Date().toString());
-        updateUI();
-        getTokenRedirect(tokenRequest);
+        if (response.tokenType === "id_token") {
+            console.log('id_token acquired at: ' + new Date().toString());
+            myMSALObj.getAccount();
+            getTokenRedirect(tokenRequest);
         } else if (response.tokenType === "access_token") {
-        console.log('access_token acquired at: ' + new Date().toString());
+            console.log('access_token acquired at: ' + new Date().toString());
+            accessToken = response.accessToken;
+            logMessage("Request made to Web API:")
+            callApiWithAccessToken(apiConfig.webApi, accessToken)
         } else {
-        console.log("token type is:" + response.tokenType);
+            console.log("token type is:" + response.tokenType);
         }
     }
 }
 
 // Redirect: once login is successful and redirects with tokens, update UI
-if (myMSALObj.getAccount() && !myMSALObj.isCallback(window.location.hash)) {
-    // avoid duplicate code execution on page load in case of iframe and Popup window.
+if (myMSALObj.getAccount()) {
     updateUI();
 }
-
 
 function signIn() {
     myMSALObj.loginRedirect(loginRequest)
@@ -48,6 +47,8 @@ return myMSALObj.acquireTokenSilent(request)
     .then((response) => {
         if (response.accessToken) {
             accessToken = response.accessToken
+            logMessage("Request made to Web API:")
+            callApiWithAccessToken(apiConfig.webApi, accessToken)
         }
     }).catch(error => {
         console.log("silent token acquisition fails. acquiring token using redirect");
@@ -55,3 +56,14 @@ return myMSALObj.acquireTokenSilent(request)
         return myMSALObj.acquireTokenRedirect(request)
     });
 }
+
+
+// calls the resource API with the token
+function callApi() {
+  if (accessToken === null || accessToken === undefined) {
+    getTokenRedirect(tokenRequest);
+  } else {
+    logMessage("Request made to Web API:")
+    callApiWithAccessToken(apiConfig.webApi, accessToken)
+  }
+} 

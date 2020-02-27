@@ -7,3 +7,5 @@
 * Corrected HTML structure.
 * UI redesigned with Bootstrap 4 framework.
 * Corrected README.md.
+* Added login with redirect.
+* Authentication decoupled from access token request.

@@ -1,9 +1,6 @@
 // UI elements to work with
 const signInButton = document.getElementById('signIn');
-signInButton.addEventListener('click', signIn);
-
 const signOutButton = document.getElementById('signOut');
-signOutButton.addEventListener('click', logout);
 
 const callWebApiButton = document.getElementById('callApiButton');
 
@@ -24,10 +21,9 @@ function updateUI() {
     // add the callWebApi button
     callWebApiButton.style.display = 'initial';
     callWebApiButton.setAttribute('class', 'btn btn-primary');
-    callWebApiButton.addEventListener('click', callApi);
 }
 
 // debug helper
 function logMessage(s) {
-    response.appendChild(document.createTextNode('\n' + s));
+    response.appendChild(document.createTextNode('\n' + s + '\n'));
 }

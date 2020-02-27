@@ -9,8 +9,7 @@ function callApiWithAccessToken(endpoint, token) {
         method: "GET",
         headers: headers
       };
-  
-    
+
     fetch(endpoint, options)
       .then(response => response.json())
       .then(response => {
@@ -19,29 +18,3 @@ function callApiWithAccessToken(endpoint, token) {
         logMessage("Error calling the Web api:\n" + error);
       });
 }
-
-// calls the resource API with the token
-function callApi() {
-  getTokenPopup(tokenRequest)
-      .then(tokenResponse => {
-        console.log(tokenResponse)
-          try {
-            logMessage("\nRequest made to Web API:\n")
-            callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);
-          } catch(err) {
-            console.log(err);
-          }
-      });
-}
-
-
-/** USE THIS INSTEAD IF YOU'RE FOLLOWING THE REDIRECT FLOW
-calls the resource API with the token
-function callApi() {
-  if (accessToken === null || accessToken === undefined) {
-    getTokenRedirect(tokenRequest);
-  } else {
-    callApiWithAccessToken(apiConfig.webApi, accessToken)
-  }
-} 
-*/

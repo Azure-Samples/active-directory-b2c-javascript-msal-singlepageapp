@@ -16,5 +16,3 @@ Follow these instructions to download and run the sample locally.
 2. Clone and download this repository.
 3. Navigate to the root of this repository, and install the dependencies: `npm install`
 4. Start the application: `npm start`
-5. Run tests: `npm test`
-6. Run linting: `npm run lint`
