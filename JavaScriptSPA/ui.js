@@ -12,19 +12,19 @@ const response = document.getElementById("response");
 
 // updates the UI post login/token acquisition
 function updateUI() {
-        const userName = myMSALObj.getAccount().name;
-        logMessage("User '" + userName + "' logged-in");
+    const userName = myMSALObj.getAccount().name;
+    logMessage("User '" + userName + "' logged-in");
 
-        signInButton.style.display = 'none';
-        signOutButton.style.display = 'initial';
-    
-        // greet the user - specifying login
-        label.innerText = "Hello " + userName;
-    
-        // add the callWebApi button
-        callWebApiButton.style.display = 'initial';
-        callWebApiButton.setAttribute('class', 'btn btn-primary');
-        callWebApiButton.addEventListener('click', callApi);
+    signInButton.style.display = 'none';
+    signOutButton.style.display = 'initial';
+
+    // greet the user - specifying login
+    label.innerText = "Hello " + userName;
+
+    // add the callWebApi button
+    callWebApiButton.style.display = 'initial';
+    callWebApiButton.setAttribute('class', 'btn btn-primary');
+    callWebApiButton.addEventListener('click', callApi);
 }
 
 // debug helper
