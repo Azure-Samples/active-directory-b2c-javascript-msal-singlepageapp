@@ -1,7 +1,7 @@
 const msalConfig = {
     auth: {
-        clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902", //This is your client ID
-        authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/" + b2cPolicies.signUpSignIn, //This is your tenant info
+        clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902",
+        authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_susi",
         validateAuthority: false
     },
     cache: {

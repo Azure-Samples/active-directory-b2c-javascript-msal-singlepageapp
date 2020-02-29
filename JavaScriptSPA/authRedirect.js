@@ -3,6 +3,7 @@
 const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 
 let accessToken;
+
 // Register Callbacks for Redirect flow
 myMSALObj.handleRedirectCallback(authRedirectCallBack);
 

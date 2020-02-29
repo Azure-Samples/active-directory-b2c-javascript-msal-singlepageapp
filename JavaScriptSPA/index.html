@@ -20,6 +20,8 @@
 </head>
 
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Azure AD B2C</a>
     <div class="btn-group ml-auto dropleft">
@@ -27,6 +29,8 @@
         <button type="button" id="signOut" class="btn btn-success" onclick="logout()" style="display:none">Sign Out</button>
     </div>
   </nav>
+
+  <!-- Content -->
   <div class="card">
     <h5 class="card-header text-center">Getting an access token with Azure AD B2C and calling a Web API</h5>
     <div class="card-body text-center">
@@ -42,12 +46,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <!-- importing app scripts -->
-  <script type="text/javascript" src="./policies.js"></script>
   <script type="text/javascript" src="./authConfig.js"></script>
   <script type="text/javascript" src="./apiConfig.js"></script>
   <script type="text/javascript" src="./ui.js"></script>
-
-  <!-- replace with authRedirect if you would like to use redirect flow -->
+  <!-- replace next with authRedirect if you would like to use redirect flow -->
   <script type="text/javascript" src="./authPopup.js"></script>
   <script type="text/javascript" src="./api.js"></script>
 </body>

@@ -1,9 +1,7 @@
 // UI elements to work with
 const signInButton = document.getElementById('signIn');
 const signOutButton = document.getElementById('signOut');
-
 const callWebApiButton = document.getElementById('callApiButton');
-
 const label = document.getElementById('label');
 const response = document.getElementById("response");
 
