@@ -3,8 +3,3 @@ const apiConfig = {
     b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
     webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
   };
-
-// request to acquire a token for resource access
-const tokenRequest = {
-    scopes: apiConfig.b2cScopes
-};

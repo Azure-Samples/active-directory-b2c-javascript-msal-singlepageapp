@@ -14,3 +14,8 @@ const msalConfig = {
 const loginRequest = {
     scopes: ["openid", "profile"],
 };
+
+// request to acquire a token for resource access
+const tokenRequest = {
+    scopes: apiConfig.b2cScopes
+};

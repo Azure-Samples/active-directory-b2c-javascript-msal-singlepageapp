@@ -60,7 +60,7 @@ return myMSALObj.acquireTokenSilent(request)
 
 
 // calls the resource API with the token
-function callApi() {
+function passTokenToAPI() {
   if (accessToken === null || accessToken === undefined) {
     getTokenRedirect(tokenRequest);
   } else {
