@@ -4,8 +4,9 @@ const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 
 function signIn() {
   myMSALObj.loginPopup(loginRequest)
-    .then(loginResponse => {  
+    .then(loginResponse => {
         console.log('id_token acquired at: ' + new Date().toString());
+        console.log(loginResponse);  
         
         if (myMSALObj.getAccount()) {
           updateUI();
@@ -26,28 +27,28 @@ function getTokenPopup(request) {
   return myMSALObj.acquireTokenSilent(request)
     .catch(error => {
       console.log("silent token acquisition fails. acquiring token using popup");
-      
+      console.log(error);
       // fallback to interaction when silent call fails
       return myMSALObj.acquireTokenPopup(request)
         .then(tokenResponse => {
           console.log('access_token acquired at: ' + new Date().toString());
-        })
-        .catch(error => {
+          return tokenResponse;
+        }).catch(error => {
           console.log(error);
         });
     });
 }
 
-//calls the resource API with the token
+// Acquires and access token and then passes it to the API call
 function passTokenToApi() {
   getTokenPopup(tokenRequest)
-      .then(tokenResponse => {
-          console.log('access_token acquired at: ' + new Date().toString());
-          try {
-            logMessage("Request made to Web API:")
-            callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);
-          } catch(err) {
-            console.log(err);
-          }
-      });
+    .then(tokenResponse => {
+        console.log('access_token acquired at: ' + new Date().toString());
+        try {
+          logMessage("Request made to Web API:")
+          callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);
+        } catch(err) {
+          console.log(err);
+        }
+    });
 }

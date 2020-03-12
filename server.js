@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 app.use(express.static('JavaScriptSPA'))
 
 // Set up a route for index.html.
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 

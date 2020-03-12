@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AAD B2C | MSAL.JS Vanilla JavaScript SPA</title>
-
-  <!-- bluebird only needed if this page needs to run on Internet Explorer -->
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
   
   <!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
-  <script type="text/javascript" src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js" integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP" crossorigin="anonymous"></script>
-  
+  <script type="text/javascript" src="https://alcdn.msauth.net/lib/1.2.1/js/msal.js" integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP" crossorigin="anonymous"></script>
+  <!-- msal.js with a fallback to backup CDN -->
   <script type="text/javascript">
-    if(typeof Msal === 'undefined')document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/lib/1.2.1/js/msal.js' type='text/javascript' integrity='sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP' crossorigin='anonymous'%3E%3C/script%3E"));
+    if(typeof Msal === 'undefined')document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/lib/1.2.1/js/msal.js' type='text/javascript' integrity='sha384-m/3NDUcz4krpIIiHgpeO0O8uxSghb+lfBTngquAo2Zuy2fEF+YgFeP08PWFo5FiJ' crossorigin='anonymous'%3E%3C/script%3E"));
   </script>
   
   <!-- adding Bootstrap 4 for UI components  -->
@@ -26,7 +23,7 @@
     <a class="navbar-brand" href="/">Azure AD B2C</a>
     <div class="btn-group ml-auto dropleft">
         <button type="button" id="signIn" class="btn btn-secondary" onclick="signIn()">Sign In</button>
-        <button type="button" id="signOut" class="btn btn-success" onclick="logout()" style="display:none">Sign Out</button>
+        <button type="button" id="signOut" class="btn btn-success d-none" onclick="logout()">Sign Out</button>
     </div>
   </nav>
 
@@ -36,7 +33,7 @@
     <div class="card-body text-center">
       <h5 id="label" class="card-title">Sign-in with Microsoft Azure AD B2C</h5>
       <pre id="response" class="card-text"></pre>
-      <button type="button" id="callApiButton" class="btn btn-primary" onclick="callApi()" style="display:none">Call API</button>
+      <button type="button" id="callApiButton" class="btn btn-primary d-none" onclick="passTokenToApi()">Call API</button>
     </div>
   </div>
 
@@ -49,7 +46,9 @@
   <script type="text/javascript" src="./authConfig.js"></script>
   <script type="text/javascript" src="./apiConfig.js"></script>
   <script type="text/javascript" src="./ui.js"></script>
-  <!-- replace next with authRedirect if you would like to use redirect flow -->
+  
+  <!-- replace next line with authRedirect.js if you would like to use the redirect flow -->
+  <!-- <script type="text/javascript" src="./authRedirect.js"></script>   -->
   <script type="text/javascript" src="./authPopup.js"></script>
   <script type="text/javascript" src="./api.js"></script>
 </body>

@@ -9,5 +9,3 @@
 * Corrected README.md.
 * Added login with redirect.
 * Authentication decoupled from access token request.
-
-## 3/06/2020
