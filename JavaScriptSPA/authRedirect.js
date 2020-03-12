@@ -16,12 +16,18 @@ function authRedirectCallBack(error, response) {
       myMSALObj.getAccount();
       getTokenRedirect(tokenRequest);
     } else if (response.tokenType === "access_token") {
-      console.log('access_token acquired at: ' + new Date().toString());
-      accessToken = response.accessToken;
-      logMessage("Request made to Web API:")
-      callApiWithAccessToken(apiConfig.webApi, accessToken)
+        console.log('access_token acquired at: ' + new Date().toString());
+        accessToken = response.accessToken;
+        logMessage("Request made to Web API:")
+        if (accessToken === null || accessToken === undefined) {
+          try {
+            callApiWithAccessToken(apiConfig.webApi, accessToken)
+          } catch (err) {
+            console.log(err);
+          }
+        }
     } else {
-      console.log("token type is:" + response.tokenType);
+        console.log("token type is: " + response.tokenType);
     }
   }
 }
@@ -49,7 +55,14 @@ return myMSALObj.acquireTokenSilent(request)
     if (response.accessToken) {
       accessToken = response.accessToken
       logMessage("Request made to Web API:")
-      callApiWithAccessToken(apiConfig.webApi, accessToken)
+
+      if (accessToken === null || accessToken === undefined) {
+        try {
+          callApiWithAccessToken(apiConfig.webApi, accessToken)
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }
   }).catch(error => {
     console.log("silent token acquisition fails. acquiring token using redirect");
@@ -65,7 +78,11 @@ function passTokenToApi() {
   if (accessToken === null || accessToken === undefined) {
     getTokenRedirect(tokenRequest);
   } else {
-    logMessage("Request made to Web API:")
-    callApiWithAccessToken(apiConfig.webApi, accessToken)
+      logMessage("Request made to Web API:")
+      try {
+        callApiWithAccessToken(apiConfig.webApi, accessToken)
+      } catch (err) {
+        console.log(err);
+      }
   }
 } 

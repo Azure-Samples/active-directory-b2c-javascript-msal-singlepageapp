@@ -23,7 +23,7 @@ There are two ways to run this sample:
 
 ## Using the demo environment
 
-This sample demonstrates how to sign in or sign up for an account at "Wingtip Toys" - the demo environment for this sample. Once signed-in, clicking on the **Call Web API** button shows the display name you used when you created your account.
+This sample demonstrates how to sign in or sign up for an account at "Fabrikam B2C" - the demo environment for this sample. Once signed-in, clicking on the **Call Web API** button shows the display name you used when you created your account.
 
 ### Step 1: Clone or download this repository
 
