@@ -23,5 +23,5 @@ const loginRequest = {
 
 // Add here scopes for access token to be used at the API endpoints.
 const tokenRequest = {
-  scopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
+  scopes: apiConfig.b2cScopes,  // e.g. ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
 };
