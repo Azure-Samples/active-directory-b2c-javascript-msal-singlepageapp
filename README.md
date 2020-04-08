@@ -120,7 +120,7 @@ const loginRequest = {
 };
 
 const tokenRequest = {
-  scopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
+  scopes: apiConfig.b2cScopes // i.e. ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
 };
 ```
 
