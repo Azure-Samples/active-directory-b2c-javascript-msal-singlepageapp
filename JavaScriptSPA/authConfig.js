@@ -1,7 +1,9 @@
 
-// Config object to be passed to Msal on creation.
-// For a full list of msal.js configuration parameters, 
-// visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_configuration_.html
+/**
+ * Config object to be passed to Msal on creation.
+ * For a full list of msal.js configuration parameters, 
+ * visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_configuration_.html
+ * */
 const msalConfig = {
   auth: {
     clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902",
@@ -14,9 +16,10 @@ const msalConfig = {
   }
 };
 
-// Add here scopes for id token to be used at the MS Identity Platform endpoint
-// For a full list of available authentication parameters, 
-// visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_authenticationparameters_.html
+/** 
+ * Scopes you enter here will be consented once you authenticate. For a full list of available authentication parameters, 
+ * visit https://azuread.github.io/microsoft-authentication-library-for-js/docs/msal/modules/_authenticationparameters_.html
+ */
 const loginRequest = {
   scopes: ["openid", "profile"],
 };
