@@ -5,7 +5,7 @@ const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 function signIn() {
   myMSALObj.loginPopup(loginRequest)
     .then(loginResponse => {
-        console.log("Id_token acquired at: " + new Date().toString());
+        console.log("id_token acquired at: " + new Date().toString());
         console.log(loginResponse);  
         
         if (myMSALObj.getAccount()) {
@@ -58,7 +58,7 @@ function passTokenToApi() {
     .then(tokenResponse => {
         console.log("access_token acquired at: " + new Date().toString());
         try {
-          logMessage("Request made to Web API:")
+          logMessage("Request made to Web API:");
           callApiWithAccessToken(apiConfig.webApi, tokenResponse.accessToken);
         } catch(err) {
           console.log(err);

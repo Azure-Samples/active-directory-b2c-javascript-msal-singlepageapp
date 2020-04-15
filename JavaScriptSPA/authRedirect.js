@@ -77,7 +77,7 @@ function passTokenToApi() {
   if (!accessToken) {
     getTokenRedirect(tokenRequest);
   } else {
-      logMessage("Request made to Web API:")
+      logMessage("Request made to Web API:");
       try {
         callApiWithAccessToken(apiConfig.webApi, accessToken);
       } catch (err) {
