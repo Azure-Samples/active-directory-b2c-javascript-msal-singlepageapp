@@ -15,12 +15,12 @@ function signIn() {
     }).catch(function (error) {
       console.log(error);
 
-      // error handling
+      // Error handling
       if (error.errorMessage) {
-        // check for forgot password error
-        // learn more about AAD error codes at https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
+        // Check for forgot password error
+        // Learn more about AAD error codes at https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
         if (error.errorMessage.indexOf("AADB2C90118") > -1) {
-          myMSALObj.loginPopup(b2cPolicies.forgotPassword)
+          myMSALObj.loginPopup(b2cPolicies.authorities.forgotPassword)
             .then(loginResponse => {
               console.log(loginResponse);
               window.alert("Password has been reset successfully. \nPlease sign-in with your new password.");
@@ -30,7 +30,7 @@ function signIn() {
     });
 }
 
-// sign-out the user
+// Sign-out the user
 function logout() {
   // Removes all sessions, need to call AAD endpoint to do full logout
   myMSALObj.logout();
