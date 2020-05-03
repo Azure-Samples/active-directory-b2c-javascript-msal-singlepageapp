@@ -8,13 +8,33 @@ let accessToken;
 myMSALObj.handleRedirectCallback(authRedirectCallBack);
 
 function authRedirectCallBack(error, response) {
+  // Error handling
   if (error) {
     console.log(error);
+
+    // Check for forgot password error
+    // Learn more about AAD error codes at https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
+    if (error.errorMessage.indexOf("AADB2C90118") > -1) {
+      try {
+        // Password reset policy/authority
+        myMSALObj.loginRedirect(b2cPolicies.authorities.forgotPassword);
+      } catch(err) {
+        console.log(err);
+      }
+    }
   } else {
-    if (response.tokenType === "id_token") {
+    // We need to reject id tokens that were not issued with the default sign-in policy.
+    // To learn more about b2c tokens, visit https://docs.microsoft.com/en-us/azure/active-directory-b2c/tokens-overview
+    if (response.tokenType === "id_token" && response.idToken.claims['acr'] !== b2cPolicies.names.signUpSignIn) {
+      myMSALObj.logout();
+      window.alert("Password has been reset successfully. \nPlease sign-in with your new password.");
+    } else if (response.tokenType === "id_token" && response.idToken.claims['acr'] === b2cPolicies.names.signUpSignIn) {
       console.log("id_token acquired at: " + new Date().toString());
-      myMSALObj.getAccount();
-      getTokenRedirect(tokenRequest);
+
+      if (myMSALObj.getAccount()) {
+        updateUI();
+      }
+
     } else if (response.tokenType === "access_token") {
         console.log("access_token acquired at: " + new Date().toString());
         accessToken = response.accessToken;
@@ -32,15 +52,9 @@ function authRedirectCallBack(error, response) {
   }
 }
 
-// Redirect: once login is successful and redirects with tokens, update UI
-if (myMSALObj.getAccount()) {
-  updateUI();
-}
-
 function signIn() {
-  myMSALObj.loginRedirect(loginRequest)
+  myMSALObj.loginRedirect(loginRequest);
 }  
-
 
 // sign-out the user
 function logout() {
@@ -48,28 +62,28 @@ function logout() {
   myMSALObj.logout();
 }
 
-// This function can be removed if you do not need to support IE
+// main method to get token with redirect flow
 function getTokenRedirect(request) {
-  return myMSALObj.acquireTokenSilent(request)
-    .then((response) => {
-      if (response.accessToken) {
-        accessToken = response.accessToken;
-        logMessage("Request made to Web API:");
+return myMSALObj.acquireTokenSilent(request)
+  .then((response) => {
+    if (response.accessToken) {
+      accessToken = response.accessToken;
+      logMessage("Request made to Web API:");
 
-        if (accessToken) {
-          try {
-            callApiWithAccessToken(apiConfig.webApi, accessToken);
-          } catch (err) {
-            console.log(err);
-          }
+      if (accessToken) {
+        try {
+          callApiWithAccessToken(apiConfig.webApi, accessToken);
+        } catch (err) {
+          console.log(err);
         }
       }
-    }).catch(error => {
-      console.log("Silent token acquisition fails. Acquiring token using redirect");
-      console.log(error);
-      // fallback to interaction when silent call fails
-      return myMSALObj.acquireTokenRedirect(request);
-    });
+    }
+  }).catch(error => {
+    console.log("Silent token acquisition fails. Acquiring token using redirect");
+    console.log(error);
+    // fallback to interaction when silent call fails
+    return myMSALObj.acquireTokenRedirect(request);
+  });
 }
 
 
@@ -85,4 +99,4 @@ function passTokenToApi() {
         console.log(err);
       }
   }
-} 
+}
