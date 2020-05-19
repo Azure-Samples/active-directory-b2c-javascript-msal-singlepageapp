@@ -23,24 +23,24 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
-| `JavaScriptSPA`   | Contains sample source files.  |
-| `authPopup.js`   | Main authentication logic resides here (using Popup flow).            |
-| `authRedirect.js`   | Use this instead of `authPopup.js` for authentication with redirect flow.   |
+| `JavaScriptSPA`   | Contains sample source files.              |
+| `authPopup.js`    | Main authentication logic resides here (using Popup flow). |
+| `authRedirect.js` | Use this instead of `authPopup.js` for authentication with redirect flow. |
 | `authConfig.js`   | Contains configuration parameters for the sample. |
-| `api.js`   | Provides a helper function for calling the web API.   |
-| `apiConfig.js`   | Contains API endpoint and scope.   |
-| `ui.js`   | Contains UI logic.   |
-| `policies.js`   | Contains policies and authority strings.   |
-| `index.html`   |  Contains the UI of the sample.                       |
-| `.gitignore`      | Defines what to ignore at commit time.      |
+| `api.js`          | Provides a helper function for calling the web API. |
+| `apiConfig.js`    | Contains API endpoint and scope.           |
+| `ui.js`           | Contains UI logic.                         |
+| `policies.js`     | Contains policies and authority strings.   |
+| `index.html`      |  Contains the UI of the sample.            |
+| `.gitignore`      | Defines what to ignore at commit time.     |
 | `CHANGELOG.md`    | List of changes to the sample.             |
 | `CODE_OF_CONDUCT.md` | Code of Conduct information.            |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
 | `LICENSE`         | The license for the sample.                |
-| `package.json`    | Package manifest for npm.                   |
+| `package.json`    | Package manifest for npm.                  |
 | `README.md`       | This README file.                          |
 | `SECURITY.md`     | Security disclosures.                      |
-| `server.js`     | Implements a simple Node server to serve index.html.  |
+| `server.js`       | Implements a simple Node server to serve index.html.  |
 
 ## Prerequisites
 
