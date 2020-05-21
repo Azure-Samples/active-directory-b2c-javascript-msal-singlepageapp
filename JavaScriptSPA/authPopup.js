@@ -12,7 +12,7 @@ function signIn() {
           updateUI();
         }
         
-    }).catch(function (error) {
+    }).catch(error => {
       console.log(error);
 
       // Error handling

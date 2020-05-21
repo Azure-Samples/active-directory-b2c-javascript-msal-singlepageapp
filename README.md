@@ -14,6 +14,39 @@ urlFragment: "active-directory-b2c-javascript-msal-singlepageapp"
 
 This simple sample demonstrates how to use the [Microsoft Authentication Library for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
+**Note:** A quickstart guide covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/quickstart-single-page-app).
+
+**Note:** A more detailed tutorial covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-single-page-app).
+
+
+## Contents
+
+| File/folder       | Description                                |
+|-------------------|--------------------------------------------|
+| `JavaScriptSPA`   | Contains sample source files.              |
+| `authPopup.js`    | Main authentication logic resides here (using Popup flow). |
+| `authRedirect.js` | Use this instead of `authPopup.js` for authentication with redirect flow. |
+| `authConfig.js`   | Contains configuration parameters for the sample. |
+| `api.js`          | Provides a helper function for calling the web API. |
+| `apiConfig.js`    | Contains API endpoint and scope.           |
+| `ui.js`           | Contains UI logic.                         |
+| `policies.js`     | Contains policies and authority strings.   |
+| `index.html`      |  Contains the UI of the sample.            |
+| `.gitignore`      | Defines what to ignore at commit time.     |
+| `CHANGELOG.md`    | List of changes to the sample.             |
+| `CODE_OF_CONDUCT.md` | Code of Conduct information.            |
+| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
+| `LICENSE`         | The license for the sample.                |
+| `package.json`    | Package manifest for npm.                  |
+| `README.md`       | This README file.                          |
+| `SECURITY.md`     | Security disclosures.                      |
+| `server.js`       | Implements a simple Node server to serve index.html.  |
+
+## Prerequisites
+
+- [Node](https://nodejs.org/en/) must be installed to run this sample.
+- A modern web browser. This sample uses **ES6** conventions and will not run on **Internet Explorer**.
+
 ## How to run this sample
 
 There are two ways to run this sample:
@@ -87,26 +120,19 @@ Now in the sample code, you can replace the single page application's demo envir
 
 1. Open the `authConfig.js` file.
 2. Find the assignment for `clientId` and replace the value with the Application ID for the single page application you registered earlier, for example the Application ID found in `My Test SPA` application in the Azure portal.
-3. Find the assignment for `authority` and replacing `b2c_1_susi` with the name of the policy you created in Step 2, and `fabrikamb2c.onmicrosoft.com` by the name of your Azure AD B2C tenant, for example `https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>`
-4. Open the `apiConfig.js` file.
-5. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/helloapi/demo.read"]`
-6. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: http://localhost:5000/hello`
+3. Open the `policies.js` file.
+4. Find the entries for `names` and `authorities` and replacing, as appropriate, with the names of the policies you created in Step 2, and `fabrikamb2c.onmicrosoft.com` by the name of your Azure AD B2C tenant, for example `https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<your-sign-in-sign-up-policy>`
+5. Open the `apiConfig.js` file.
+6. Find the assignment for the scopes `b2cScopes` replacing the URL by the scope URL you created for the Web API, e.g. `b2cScopes: ["https://<your-tenant-name>.onmicrosoft.com/helloapi/demo.read"]`
+7. Find the assignment for API URL `webApi` replacing the current URL by the URL where you deployed your Web API in Step 4, e.g. `webApi: http://localhost:5000/hello`
 
 Your resulting code should look as follows:
   
 ```javascript
-const apiConfig = {
-  b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
-  webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
-};
-
-```
-
-```javascript
 const msalConfig = {
   auth: {
     clientId: "e760cab2-b9a1-4c0d-86fb-ff7084abd902",
-    authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_susi",
+    authority: b2cPolicies.authorities.signUpSignIn.authority,
     validateAuthority: false
   },
   cache: {
@@ -121,6 +147,30 @@ const loginRequest = {
 
 const tokenRequest = {
   scopes: apiConfig.b2cScopes // i.e. ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
+};
+```
+
+```javascript
+const b2cPolicies = {
+    names: {
+        signUpSignIn: "b2c_1_susi",
+        forgotPassword: "b2c_1_reset"
+    },
+    authorities: {
+        signUpSignIn: {
+            authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_susi",
+        },
+        forgotPassword: {
+            authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_reset",
+        },
+    },
+}
+```
+
+```javascript
+const apiConfig = {
+  b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
+  webApi: "https://fabrikamb2chello.azurewebsites.net/hello"
 };
 ```
 
