@@ -1,14 +1,18 @@
 # CHANGELOG
 
+## 6/12/2020
+
+* Updated to MSAL.js to 1.3.2.
+
 ## 5/19/2020
 
-* Updated to ## MSAL.js 1.3.1.
+* Updated to MSAL.js to 1.3.1.
 * Removed 'path' package from dependencies.
 * Further clarifications in README.md
 
 ## 4/28/2020
 
-* Updated to ## MSAL.js 1.3.0.
+* Updated to MSAL.js to 1.3.0.
 * Added multiple policy support.
 * Added error handling for password reset policy.
 

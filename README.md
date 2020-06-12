@@ -18,7 +18,6 @@ This simple sample demonstrates how to use the [Microsoft Authentication Library
 
 **Note:** A more detailed tutorial covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-single-page-app).
 
-
 ## Contents
 
 | File/folder       | Description                                |
