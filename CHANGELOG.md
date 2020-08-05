@@ -1,22 +1,27 @@
 # CHANGELOG
 
-## 6/12/2020
+## 08/05/2020
+
+* Updated to MSAL.js to 1.3.2.
+* Added issue & PR templates.
+
+## 06/12/2020
 
 * Updated to MSAL.js to 1.3.2.
 
-## 5/19/2020
+## 05/19/2020
 
 * Updated to MSAL.js to 1.3.1.
 * Removed 'path' package from dependencies.
 * Further clarifications in README.md
 
-## 4/28/2020
+## 04/28/2020
 
 * Updated to MSAL.js to 1.3.0.
 * Added multiple policy support.
 * Added error handling for password reset policy.
 
-## 2/21/2020
+## 02/21/2020
 
 * Source code refactored.
 * Ajax calls replaced with Fetch API.
