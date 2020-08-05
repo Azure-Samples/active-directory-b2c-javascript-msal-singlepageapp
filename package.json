@@ -13,7 +13,7 @@
   },
   "description": "---\r page_type: sample\r description: \"This sample demonstrates how to use the Microsoft Authentication Library for JavaScript (msal.js) to get an access token and call an API secured by Azure AD B2C.\"\r languages:\r   - javascript\r products:\r   - azure-active-directory\r   - azure\r ---",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   },
   "repository": {
     "type": "git",
