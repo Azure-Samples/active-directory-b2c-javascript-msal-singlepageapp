@@ -9,7 +9,7 @@ const path = require('path');
 
 //initialize express.
 const app = express();
-const port = 6420; 
+const port = process.env.PORT || 6420; 
 
 // Configure morgan module to log all requests.
 app.use(morgan('dev'));
