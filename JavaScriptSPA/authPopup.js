@@ -65,3 +65,17 @@ function passTokenToApi() {
         }
     });
 }
+
+function editProfile() {
+
+  const request = {
+    scopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"],
+    authority: b2cPolicies.authorities.editProfile.authority
+  }
+
+  myMSALObj.loginPopup(request)
+  .then(tokenResponse => {
+      console.log("access_token acquired at: " + new Date().toString());
+      console.log(tokenResponse);
+  });
+}
