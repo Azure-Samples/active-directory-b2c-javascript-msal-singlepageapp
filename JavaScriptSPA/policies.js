@@ -5,7 +5,8 @@
 const b2cPolicies = {
     names: {
         signUpSignIn: "b2c_1_susi",
-        forgotPassword: "b2c_1_reset"
+        forgotPassword: "b2c_1_reset",
+        editProfile: "b2c_1_edit_profile"
     },
     authorities: {
         signUpSignIn: {

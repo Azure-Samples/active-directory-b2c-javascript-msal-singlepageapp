@@ -24,6 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Azure AD B2C</a>
     <div class="btn-group ml-auto dropleft">
+        <button type="button" id="editProfileButton" class="btn btn-secondary d-none" onclick="editProfile()">Edit Profile</button>
         <button type="button" id="signIn" class="btn btn-secondary" onclick="signIn()">Sign In</button>
         <button type="button" id="signOut" class="btn btn-success d-none" onclick="logout()">Sign Out</button>
     </div>
@@ -36,7 +37,6 @@
       <h5 id="label" class="card-title">Sign-in with Microsoft Azure AD B2C</h5>
       <pre id="response" class="card-text"></pre>
       <button type="button" id="callApiButton" class="btn btn-primary d-none" onclick="passTokenToApi()">Call API</button>
-      <button type="button" id="editProfileButton" class="btn btn-primary d-none" onclick="editProfile()">Edit Profile</button>
     </div>
   </div>
 
@@ -52,8 +52,8 @@
   <script type="text/javascript" src="./ui.js"></script>
   
   <!-- replace next line with authRedirect.js if you would like to use the redirect flow -->
-  <!-- <script type="text/javascript" src="./authRedirect.js"></script>   -->
-  <script type="text/javascript" src="./authPopup.js"></script>
+  <script type="text/javascript" src="./authRedirect.js"></script>  
+  <!-- <script type="text/javascript" src="./authPopup.js"></script> -->
   <script type="text/javascript" src="./api.js"></script>
 </body>
 </html>
