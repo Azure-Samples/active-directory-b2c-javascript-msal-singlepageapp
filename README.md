@@ -85,9 +85,10 @@ Listening on port 6420...
 
 You can visit `http://localhost:6420` and perform the following actions:
 
-1. Click the **Login** button to start the Azure AD B2C sign in or sign up workflow.  
-2. Once signed in, you can click the **Call Web API** button to have your display name returned from the Web API call as a JSON object.
-3. Click **Logout** to logout from the application.
+1. Click the **Login** button to start the Azure AD B2C sign in, sign up or password reset user-flows.  
+1. Once signed in, you can click on the **Call Web API** button to have your display name returned from the Web API call as a JSON object.
+1. Once signed in, you can click the **Edit Profile** button to edit your profile information.
+1. Click **Logout** to logout from the application.
 
 ## Using your own Azure AD B2C Tenant
 
@@ -153,7 +154,8 @@ const tokenRequest = {
 const b2cPolicies = {
     names: {
         signUpSignIn: "b2c_1_susi",
-        forgotPassword: "b2c_1_reset"
+        forgotPassword: "b2c_1_reset",
+        editProfile: "b2c_1_edit_profile"
     },
     authorities: {
         signUpSignIn: {
@@ -162,6 +164,9 @@ const b2cPolicies = {
         forgotPassword: {
             authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_reset",
         },
+        editProfile: {
+            authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_edit_profile"
+        }
     },
 }
 ```
@@ -195,8 +200,7 @@ const apiConfig = {
 
 ## Optional
 
-- [Configure application to use b2clogin.com](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-b2c-overview#configure-application-to-use-b2clogincom)
-- The MSAL.js library allows you to pass [login_hint parameter](https://docs.microsoft.com/en-us/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/MSAL.js-1.0.0-api-release#signing-in-and-getting-tokens-with-msaljs), using `loginHint` attribute.
+- The MSAL.js library allows you to pass a [login_hint parameter](https://docs.microsoft.com/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/MSAL.js-1.0.0-api-release#signing-in-and-getting-tokens-with-msaljs), using the `loginHint` attribute.
 
     ```JavaScript
       const loginRequest = {
@@ -205,7 +209,7 @@ const apiConfig = {
       };
     ```
 
-- You can pass any custom query string parameter in the [AuthenticationParameters object](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/MSAL.js-1.0.0-api-release#signing-in-and-getting-tokens-with-msaljs), using `extraQueryParameters` attribute. Following sample sets the campaignId that can be used in the [Azure AD B2C UI](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-ui-customization-custom-dynamic), and the [ui_locales](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-language-customization) set to es (Spanish).
+- You can pass any custom query string parameter in the [AuthenticationParameters object](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/MSAL.js-1.0.0-api-release#signing-in-and-getting-tokens-with-msaljs), using the `extraQueryParameters` attribute. Following sample sets the `campaignId` that can be used in the [Azure AD B2C UI](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-ui-customization-custom-dynamic), and the [ui_locales](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-language-customization) set to es (Spanish).
 
     ```JavaScript
       const loginRequest = {
@@ -220,11 +224,11 @@ For more information on Azure B2C, see:
 
 - [Azure AD B2C documentation homepage](http://aka.ms/aadb2c)
 - [Microsoft authentication library for js Wiki](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki)
-- [Integrate Microsoft Authentication Library (MSAL) with Azure Active Directory B2C](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-b2c-overview)
+- [Integrate Microsoft Authentication Library (MSAL) with Azure Active Directory B2C](https://docs.microsoft.com/azure/active-directory/develop/msal-b2c-overview)
 
 ## Community Help and Support
 
-We use Stack Overflow with the [msal](https://stackoverflow.com/questions/tagged/msal) and [azure-ad-b2c](https://stackoverflow.com/questions/tagged/azure-ad-b2c) tags to provide support. We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.js].
+We use **StackOverflow** with the [msal](https://stackoverflow.com/questions/tagged/msal) and [azure-ad-b2c](https://stackoverflow.com/questions/tagged/azure-ad-b2c) tags to provide support. We highly recommend you ask your questions on **StackOverflow** first and browse existing issues to see if someone has asked your question before. Make sure that your questions or comments are tagged with [msal.js].
 
 If you find and bug or have a feature request, please raise the issue on [GitHub Issues](../../issues).
 
