@@ -65,3 +65,11 @@ function passTokenToApi() {
         }
     });
 }
+
+function editProfile() {
+  myMSALObj.loginPopup(b2cPolicies.authorities.editProfile)
+    .then(tokenResponse => {
+        console.log("access_token acquired at: " + new Date().toString());
+        console.log(tokenResponse);
+    });
+}

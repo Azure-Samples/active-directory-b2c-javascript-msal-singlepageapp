@@ -1,13 +1,18 @@
 # CHANGELOG
 
+## 08/31/2020
+
+* Updated MSAL.js to 1.4.0.
+* Added Profile Edit user-flow.
+
 ## 08/05/2020
 
-* Updated to MSAL.js to 1.3.2.
+* Updated MSAL.js to 1.3.2.
 * Added issue & PR templates.
 
 ## 06/12/2020
 
-* Updated to MSAL.js to 1.3.2.
+* Updated MSAL.js to 1.3.2.
 
 ## 05/19/2020
 

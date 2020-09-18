@@ -5,7 +5,8 @@
 const b2cPolicies = {
     names: {
         signUpSignIn: "b2c_1_susi",
-        forgotPassword: "b2c_1_reset"
+        forgotPassword: "b2c_1_reset",
+        editProfile: "b2c_1_edit_profile"
     },
     authorities: {
         signUpSignIn: {
@@ -14,5 +15,8 @@ const b2cPolicies = {
         forgotPassword: {
             authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_reset",
         },
+        editProfile: {
+            authority: "https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_edit_profile"
+        }
     },
 }
