@@ -112,7 +112,7 @@ Provide the following values for the Single Page Application registration:
 - Mark **Yes** for the **Web App/Web API** setting for your application.
 - Set the **Reply URL** for your app to `http://localhost:6420`. This sample provided in this repository is configured to run on port 6420.
 - Create the application.
-- Once the application is created, open your `My Test SPA` and open the **API Access** window (in the left nav menu). Click **Add** and select the name of the Node.js Web API you registered previously, `My Test Node.js Web API`. Select the scope(s) you defined previously, for example, `demo.read` and hit **Save**.
+- Once the application is created, click on the **API Permissions** blade (in the left nav menu). Click **Add a Permission** and select the name of the Node.js Web API you registered previously (under **My APIs** tab). Select the scope(s) you defined previously, for example, `demo.read` and hit **Save**.
 
 #### Step 2: Configure the sample code to use your Azure AD B2C tenant
 
