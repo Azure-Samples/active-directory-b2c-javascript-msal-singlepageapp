@@ -10,13 +10,13 @@ urlFragment: "active-directory-b2c-javascript-msal-singlepageapp"
 
 # Single-Page Application built on MSAL.js with Azure AD B2C
 
-> **Warning**: Silent renewing of access tokens is not supported by all social identity providers.
-
 This simple sample demonstrates how to use the [Microsoft Authentication Library for JavaScript (msal.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js) to get an access token and call an API secured by Azure AD B2C.
 
-**Note:** A quickstart guide covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/quickstart-single-page-app).
+> :warning: Silent renewing of access tokens is not supported by all social identity providers.
 
-**Note:** A more detailed tutorial covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-single-page-app).
+A quickstart guide covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/quickstart-single-page-app). A more detailed tutorial covering this sample can be found [here](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-single-page-app).
+
+> :information_source: See here a [new B2C single-page application sample](https://github.com/Azure-Samples/ms-identity-b2c-javascript-spa) using MSAL.js 2.x authorization code flow with PKCE.
 
 ## Contents
 
