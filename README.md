@@ -198,6 +198,8 @@ const apiConfig = {
 5. Click on the **Call Web API** and see the textual representation of the JSON object that is returned. Make sure your Node.js Web API sample is still running on port 5000.
 6. Sign out by clicking the **Logout** button.  
 
+> :thought_balloon: Consider taking a moment to [share your experience with us](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpURUs1UzJDVkQ5SjJEUzNMOEtOWkZXSFZaMiQlQCN0PWcu&wdLOR=cD154CAA8-2024-2942-B571-84A3F1FFF61A).
+
 ## Optional
 
 - The MSAL.js library allows you to pass a [login_hint parameter](https://docs.microsoft.com/azure/active-directory-b2c/direct-signin) in the [AuthenticationParameters object](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/MSAL.js-1.0.0-api-release#signing-in-and-getting-tokens-with-msaljs), using the `loginHint` attribute.
