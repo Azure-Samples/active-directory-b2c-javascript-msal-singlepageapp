@@ -5,8 +5,8 @@ const myMSALObj = new Msal.UserAgentApplication(msalConfig);
 function signIn() {
   myMSALObj.loginPopup(loginRequest)
     .then(loginResponse => {
-        console.log("id_token acquired at: " + new Date().toString());
-        console.log(loginResponse);  
+        // do something with loginResponse
+        console.log("id_token acquired at: " + new Date().toString()); 
         
         if (myMSALObj.getAccount()) {
           updateUI();
@@ -21,9 +21,9 @@ function signIn() {
         // Learn more about AAD error codes at https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
         if (error.errorMessage.indexOf("AADB2C90118") > -1) {
           myMSALObj.loginPopup(b2cPolicies.authorities.forgotPassword)
-            .then(loginResponse => {
-              console.log(loginResponse);
+            .then(() => {
               window.alert("Password has been reset successfully. \nPlease sign-in with your new password.");
+              myMSALObj.logout();
             })
         }
       }
@@ -67,9 +67,5 @@ function passTokenToApi() {
 }
 
 function editProfile() {
-  myMSALObj.loginPopup(b2cPolicies.authorities.editProfile)
-    .then(tokenResponse => {
-        console.log("access_token acquired at: " + new Date().toString());
-        console.log(tokenResponse);
-    });
+  myMSALObj.loginPopup(b2cPolicies.authorities.editProfile);
 }
